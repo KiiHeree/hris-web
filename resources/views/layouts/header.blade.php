@@ -1,119 +1,124 @@
-<header class=" bg-white shadow-md rounded-md w-full text-sm py-4 px-6">
+ <div class="az-header">
+     <div class="container">
+         <div class="az-header-left">
+             <a href="index.html" class="az-logo"><span></span> azia</a>
+             <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
+         </div><!-- az-header-left -->
+         <div class="az-header-menu">
+             <div class="az-header-menu-header">
+                 <a href="index.html" class="az-logo"><span></span> azia</a>
+                 <a href="" class="close">&times;</a>
+             </div><!-- az-header-menu-header -->
+             <ul class="nav">
+                 <li class="nav-item active show">
+                     <a href="index.html" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>
+                         Dashboard</a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i> Pages</a>
+                     <nav class="az-menu-sub">
+                         <a href="page-signin.html" class="nav-link">Sign In</a>
+                         <a href="page-signup.html" class="nav-link">Sign Up</a>
+                     </nav>
+                 </li>
+                 <li class="nav-item">
+                     <a href="chart-chartjs.html" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>
+                         Charts</a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="form-elements.html" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>
+                         Forms</a>
+                 </li>
+                 <li class="nav-item">
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-book"></i> Components</a>
+                     <div class="az-menu-sub">
+                         <div class="container">
+                             <div>
+                                 <nav class="nav">
+                                     <a href="elem-buttons.html" class="nav-link">Buttons</a>
+                                     <a href="elem-dropdown.html" class="nav-link">Dropdown</a>
+                                     <a href="elem-icons.html" class="nav-link">Icons</a>
+                                     <a href="table-basic.html" class="nav-link">Table</a>
+                                 </nav>
+                             </div>
+                         </div><!-- container -->
+                     </div>
+                 </li>
+             </ul>
+         </div><!-- az-header-menu -->
+         <div class="az-header-right">
+             <a href="https://www.bootstrapdash.com/demo/azia-free/docs/documentation.html" target="_blank"
+                 class="az-header-search-link"><i class="far fa-file-alt"></i></a>
+             <a href="" class="az-header-search-link"><i class="fas fa-search"></i></a>
+             <div class="az-header-message">
+                 <a href="#"><i class="typcn typcn-messages"></i></a>
+             </div><!-- az-header-message -->
+             <div class="dropdown az-header-notification">
+                 <a href="" class="new"><i class="typcn typcn-bell"></i></a>
+                 <div class="dropdown-menu">
+                     <div class="az-dropdown-header mg-b-20 d-sm-none">
+                         <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                     </div>
+                     <h6 class="az-notification-title">Notifications</h6>
+                     <p class="az-notification-text">You have 2 unread notification</p>
+                     <div class="az-notification-list">
+                         <div class="media new">
+                             <div class="az-img-user"><img src=/assets/img/faces/face2.jpg" alt=""></div>
+                             <div class="media-body">
+                                 <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
+                                 <span>Mar 15 12:32pm</span>
+                             </div><!-- media-body -->
+                         </div><!-- media -->
+                         <div class="media new">
+                             <div class="az-img-user online"><img src=/assets/img/faces/face3.jpg" alt="">
+                             </div>
+                             <div class="media-body">
+                                 <p><strong>Joyce Chua</strong> just created a new blog post</p>
+                                 <span>Mar 13 04:16am</span>
+                             </div><!-- media-body -->
+                         </div><!-- media -->
+                         <div class="media">
+                             <div class="az-img-user"><img src=/assets/img/faces/face4.jpg" alt=""></div>
+                             <div class="media-body">
+                                 <p><strong>Althea Cabardo</strong> just created a new blog post</p>
+                                 <span>Mar 13 02:56am</span>
+                             </div><!-- media-body -->
+                         </div><!-- media -->
+                         <div class="media">
+                             <div class="az-img-user"><img src=/assets/img/faces/face5.jpg" alt=""></div>
+                             <div class="media-body">
+                                 <p><strong>Adrian Monino</strong> added new comment on your photo</p>
+                                 <span>Mar 12 10:40pm</span>
+                             </div><!-- media-body -->
+                         </div><!-- media -->
+                     </div><!-- az-notification-list -->
+                     <div class="dropdown-footer"><a href="">View All Notifications</a></div>
+                 </div><!-- dropdown-menu -->
+             </div><!-- az-header-notification -->
+             <div class="dropdown az-profile-menu">
+                 <a href="" class="az-img-user"><img src="/assets/img/faces/face1.jpg" alt=""></a>
+                 <div class="dropdown-menu">
+                     <div class="az-dropdown-header d-sm-none">
+                         <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                     </div>
+                     <div class="az-header-profile">
+                         <div class="az-img-user">
+                             <img src=/assets/img/faces/face1.jpg" alt="">
+                         </div><!-- az-img-user -->
+                         <h6>Aziana Pechon</h6>
+                         <span>Premium Member</span>
+                     </div><!-- az-header-profile -->
 
-
-    <!-- ========== HEADER ========== -->
-
-    <nav class=" w-ful flex items-center justify-between" aria-label="Global">
-        <ul class="icon-nav flex items-center gap-4">
-            <li class="relative xl:hidden">
-                <a class="text-xl  icon-hover cursor-pointer text-heading" id="headerCollapse"
-                    data-hs-overlay="#application-sidebar-brand" aria-controls="application-sidebar-brand"
-                    aria-label="Toggle navigation" href="javascript:void(0)">
-                    <i class="ti ti-menu-2 relative z-1"></i>
-                </a>
-            </li>
-
-            <li class="relative">
-
-                <div class="hs-dropdown relative inline-flex [--placement:bottom-left] sm:[--trigger:hover]">
-                    <a class="relative hs-dropdown-toggle inline-flex hover:text-gray-500 text-gray-300" href="#">
-                        <i class="ti ti-bell-ringing text-xl relative z-[1]"></i>
-                        <div
-                            class="absolute inline-flex items-center justify-center  text-white text-[11px] font-medium  bg-blue-600 w-2 h-2 rounded-full -top-[1px] -right-[6px]">
-                        </div>
-                    </a>
-                    <div class="card hs-dropdown-menu transition-[opacity,margin] rounded-md duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[300px] hidden z-[12]"
-                        aria-labelledby="hs-dropdown-custom-icon-trigger">
-                        <div>
-                            <h3 class="text-gray-500 font-semibold text-base px-6 py-3">
-                                Notification</h3>
-                            <ul class="list-none  flex flex-col">
-                                <li>
-                                    <a href="#" class="py-3 px-6 block hover:bg-gray-200">
-                                        <p class="text-sm text-gray-500 font-medium">Roman
-                                            Joined the Team!</p>
-                                        <p class="text-xs text-gray-400 font-medium">
-                                            Congratulate him</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="py-3 px-6 block hover:bg-gray-200">
-                                        <p class="text-sm text-gray-500 font-medium">New
-                                            message received</p>
-                                        <p class="text-xs text-gray-400 font-medium">Salma
-                                            sent you new message</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="py-3 px-6 block hover:bg-gray-200">
-                                        <p class="text-sm text-gray-500 font-medium">New
-                                            Payment received</p>
-                                        <p class="text-xs text-gray-400 font-medium">Check
-                                            your earnings</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="py-3 px-6 block hover:bg-gray-200">
-                                        <p class="text-sm text-gray-500 font-medium">Jolly
-                                            completed tasks</p>
-                                        <p class="text-xs text-gray-400 font-medium">Assign
-                                            her new tasks</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="py-3 px-6 block hover:bg-gray-200">
-                                        <p class="text-sm text-gray-500 font-medium">Roman
-                                            Joined the Team!</p>
-                                        <p class="text-xs text-gray-400 font-medium">
-                                            Congratulate him</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </li>
-        </ul>
-        <div class="flex items-center gap-4">
-            <a href="https://www.wrappixel.com/templates/spike-free-tailwind-admin-template/"
-                class="btn text-base font-medium hover:bg-blue-700" target="_blank" aria-current="page">Download
-                Free</a>
-            <div class="hs-dropdown relative inline-flex [--placement:bottom-right] sm:[--trigger:hover]">
-                <a class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full">
-                    <img class="object-cover w-9 h-9 rounded-full" src="/assets/images/profile/user-1.jpg"
-                        alt="" aria-hidden="true">
-                </a>
-                <div class="card hs-dropdown-menu transition-[opacity,margin] rounded-md duration hs-dropdown-open:opacity-100 opacity-0 mt-2 min-w-max  w-[200px] hidden z-[12]"
-                    aria-labelledby="hs-dropdown-custom-icon-trigger">
-                    <div class="card-body p-0 py-2">
-                        <a href="javscript:void(0)"
-                            class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
-                            <i class="ti ti-user  text-xl "></i>
-                            <p class="text-sm ">My Profile</p>
-                        </a>
-                        <a href="javscript:void(0)"
-                            class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
-                            <i class="ti ti-mail  text-xl"></i>
-                            <p class="text-sm ">My Account</p>
-                        </a>
-                        <a href="javscript:void(0)"
-                            class="flex gap-2 items-center font-medium px-4 py-1.5 hover:bg-gray-200 text-gray-400">
-                            <i class="ti ti-list-check  text-xl "></i>
-                            <p class="text-sm ">My Task</p>
-                        </a>
-                        <div class="px-4 mt-[7px] grid">
-                            <a href="././pages/authentication-login.html"
-                                class="btn-outline-primary font-medium text-[15px] w-full hover:bg-blue-600 hover:text-white">Logout</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </nav>
-
-    <!-- ========== END HEADER ========== -->
-</header>
+                     <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My
+                         Profile</a>
+                     <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
+                     <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
+                     <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account
+                         Settings</a>
+                     <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-power-outline"></i>
+                         Sign Out</a>
+                 </div><!-- dropdown-menu -->
+             </div>
+         </div><!-- az-header-right -->
+     </div><!-- container -->
+ </div><!-- az-header -->

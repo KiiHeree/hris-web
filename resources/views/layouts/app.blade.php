@@ -2,59 +2,287 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
-    <!-- Core Css -->
-    <link rel="stylesheet" href="/assets/css/theme.css" />
-    <title>Spike TailwindCSS HTML Admin Template</title>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-90680653-2');
+    </script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="author" content="BootstrapDash">
+
+    <title>HRIS | @yield('title')</title>
+
+    <!-- vendor css -->
+    <link href="/assets/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/assets/lib/typicons.font/typicons.css" rel="stylesheet">
+    <link href="/assets/lib/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+
+    <!-- azia CSS -->
+    <link rel="stylesheet" href="/assets/css/azia.css">
+
 </head>
 
-<body class=" bg-surface">
-    <main>
-        <!--start the project-->
-        <div id="main-wrapper" class="flex p-5 xl:pr-0">
-            @include('layouts.sidebar')
-            <div class=" w-full page-wrapper xl:px-6 px-0">
+<body>
 
-                <!-- Main Content -->
-                <main class="h-full  max-w-full">
-                    <div class="container full-container p-0 flex flex-col gap-6">
-                        <!--  Header Start -->
-                        @include('layouts.header')
-                        <!--  Header End -->
-                        {{ $slot }}
-                        @include('layouts.footer')
-                    </div>
-                </main>
-                <!-- Main Content End -->
-            </div>
+   @include('layouts.header')
+
+    <div class="az-content az-content-dashboard">
+        <div class="container">
+            <div class="az-content-body">
+                {{ $slot }}
+            </div><!-- az-content-body -->
         </div>
-        <!--end of project-->
-    </main>
+    </div><!-- az-content -->
+
+    @include('layouts.footer')
 
 
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/lib/ionicons/ionicons.js"></script>
+    <script src="/assets/lib/jquery.flot/jquery.flot.js"></script>
+    <script src="/assets/lib/jquery.flot/jquery.flot.resize.js"></script>
+    <script src="/assets/lib/chart.js/Chart.bundle.min.js"></script>
+    <script src="/assets/lib/peity/jquery.peity.min.js"></script>
 
-    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="/assets/libs/iconify-icon/dist/iconify-icon.min.js"></script>
-    <script src="/assets/libs/@preline/dropdown/index.js"></script>
-    <script src="/assets/libs/@preline/overlay/index.js"></script>
-    <script src="/assets/js/sidebarmenu.js"></script>
+    <script src="/assets/js/azia.js"></script>
+    <script src="/assets/js/chart.flot.sampledata.js"></script>
+    <script src="/assets/js/dashboard.sampledata.js"></script>
+    <script src="/assets/js/jquery.cookie.js" type="text/javascript"></script>
+    <script>
+        $(function() {
+            'use strict'
 
-    <!-- solar icons -->
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-    <script src="/assets/libs/preline/dist/preline.js"></script>
+            var plot = $.plot('#flotChart', [{
+                data: flotSampleData3,
+                color: '#007bff',
+                lines: {
+                    fillColor: {
+                        colors: [{
+                            opacity: 0
+                        }, {
+                            opacity: 0.2
+                        }]
+                    }
+                }
+            }, {
+                data: flotSampleData4,
+                color: '#560bd0',
+                lines: {
+                    fillColor: {
+                        colors: [{
+                            opacity: 0
+                        }, {
+                            opacity: 0.2
+                        }]
+                    }
+                }
+            }], {
+                series: {
+                    shadowSize: 0,
+                    lines: {
+                        show: true,
+                        lineWidth: 2,
+                        fill: true
+                    }
+                },
+                grid: {
+                    borderWidth: 0,
+                    labelMargin: 8
+                },
+                yaxis: {
+                    show: true,
+                    min: 0,
+                    max: 100,
+                    ticks: [
+                        [0, ''],
+                        [20, '20K'],
+                        [40, '40K'],
+                        [60, '60K'],
+                        [80, '80K']
+                    ],
+                    tickColor: '#eee'
+                },
+                xaxis: {
+                    show: true,
+                    color: '#fff',
+                    ticks: [
+                        [25, 'OCT 21'],
+                        [75, 'OCT 22'],
+                        [100, 'OCT 23'],
+                        [125, 'OCT 24']
+                    ],
+                }
+            });
 
-    <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="/assets/js/dashboard.js"></script>
+            $.plot('#flotChart1', [{
+                data: dashData2,
+                color: '#00cccc'
+            }], {
+                series: {
+                    shadowSize: 0,
+                    lines: {
+                        show: true,
+                        lineWidth: 2,
+                        fill: true,
+                        fillColor: {
+                            colors: [{
+                                opacity: 0.2
+                            }, {
+                                opacity: 0.2
+                            }]
+                        }
+                    }
+                },
+                grid: {
+                    borderWidth: 0,
+                    labelMargin: 0
+                },
+                yaxis: {
+                    show: false,
+                    min: 0,
+                    max: 35
+                },
+                xaxis: {
+                    show: false,
+                    max: 50
+                }
+            });
+
+            $.plot('#flotChart2', [{
+                data: dashData2,
+                color: '#007bff'
+            }], {
+                series: {
+                    shadowSize: 0,
+                    bars: {
+                        show: true,
+                        lineWidth: 0,
+                        fill: 1,
+                        barWidth: .5
+                    }
+                },
+                grid: {
+                    borderWidth: 0,
+                    labelMargin: 0
+                },
+                yaxis: {
+                    show: false,
+                    min: 0,
+                    max: 35
+                },
+                xaxis: {
+                    show: false,
+                    max: 20
+                }
+            });
+
+
+            //-------------------------------------------------------------//
+
+
+            // Line chart
+            $('.peity-line').peity('line');
+
+            // Bar charts
+            $('.peity-bar').peity('bar');
+
+            // Bar charts
+            $('.peity-donut').peity('donut');
+
+            var ctx5 = document.getElementById('chartBar5').getContext('2d');
+            new Chart(ctx5, {
+                type: 'bar',
+                data: {
+                    labels: [0, 1, 2, 3, 4, 5, 6, 7],
+                    datasets: [{
+                        data: [2, 4, 10, 20, 45, 40, 35, 18],
+                        backgroundColor: '#560bd0'
+                    }, {
+                        data: [3, 6, 15, 35, 50, 45, 35, 25],
+                        backgroundColor: '#cad0e8'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        enabled: false
+                    },
+                    legend: {
+                        display: false,
+                        labels: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                                fontSize: 11,
+                                max: 80
+                            }
+                        }],
+                        xAxes: [{
+                            barPercentage: 0.6,
+                            gridLines: {
+                                color: 'rgba(0,0,0,0.08)'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                fontSize: 11,
+                                display: false
+                            }
+                        }]
+                    }
+                }
+            });
+
+            // Donut Chart
+            var datapie = {
+                labels: ['Search', 'Email', 'Referral', 'Social', 'Other'],
+                datasets: [{
+                    data: [25, 20, 30, 15, 10],
+                    backgroundColor: ['#6f42c1', '#007bff', '#17a2b8', '#00cccc', '#adb2bd']
+                }]
+            };
+
+            var optionpie = {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    display: false,
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            };
+
+            // For a doughnut chart
+            var ctxpie = document.getElementById('chartDonut');
+            var myPieChart6 = new Chart(ctxpie, {
+                type: 'doughnut',
+                data: datapie,
+                options: optionpie
+            });
+
+        });
+    </script>
 </body>
 
 </html>

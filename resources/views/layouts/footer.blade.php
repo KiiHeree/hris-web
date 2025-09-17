@@ -1,6 +1,9 @@
-<footer>
-    <p class="text-base text-gray-400 font-normal p-3 text-center">
-        Design and Developed by <a href="https://www.wrappixel.com/" target="_blank"
-            class="text-blue-600 underline hover:text-blue-700">wrappixel.com</a>
-    </p>
-</footer>
+<div class="az-footer ht-40">
+    <div class="container ht-100p pd-t-0-f">
+        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com
+            2020</span>
+        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a
+                href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin
+                templates</a> from Bootstrapdash.com</span>
+    </div><!-- container -->
+</div><!-- az-footer -->

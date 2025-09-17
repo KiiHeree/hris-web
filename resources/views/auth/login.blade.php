@@ -1,95 +1,101 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90680653-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    <!-- Favicon icon-->
-    <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
-    <!-- Core Css -->
-    <link rel="stylesheet" href="/assets/css/theme.css" />
-    <title>Modernize TailwindCSS HTML Admin Template</title>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-90680653-2');
+    </script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <!-- <meta name="twitter:site" content="@bootstrapdash">
+    <meta name="twitter:creator" content="@bootstrapdash">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Azia">
+    <meta name="twitter:description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="twitter:image" content="https://www.bootstrapdash.com/azia/img/azia-social.png"> -->
+
+    <!-- Facebook -->
+    <!-- <meta property="og:url" content="https://www.bootstrapdash.com/azia">
+    <meta property="og:title" content="Azia">
+    <meta property="og:description" content="Responsive Bootstrap 4 Dashboard Template">
+
+    <meta property="og:image" content="https://www.bootstrapdash.com/azia/img/azia-social.png">
+    <meta property="og:image:secure_url" content="https://www.bootstrapdash.com/azia/img/azia-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600"> -->
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="author" content="BootstrapDash">
+
+    <title>HRIS | Login</title>
+
+    <!-- vendor css -->
+    <link href="/assets/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/assets/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="/assets/lib/typicons.font/typicons.css" rel="stylesheet">
+
+    <!-- azia CSS -->
+    <link rel="stylesheet" href="/assets/css/azia.css">
+
 </head>
 
-<body class="DEFAULT_THEME ">
-    <main>
-        <!-- Main Content -->
-        <div
-            class="flex flex-col w-full  overflow-hidden relative min-h-screen radial-gradient items-center justify-center g-0 px-4">
+<body class="az-body">
 
-            <div class="justify-center items-center w-full card lg:flex max-w-md ">
-                <div class=" w-full card-body">
-                    <a href="/" class="py-4 block"><img src="/assets/images/logos/logo-light.svg" alt=""
-                            class="mx-auto" /></a>
-                    <p class="mb-4 text-gray-400 text-sm text-center">Your Social Campaigns</p>
-                    <!-- form -->
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('login') }}">
-                        @csrf
-                        <!-- username -->
-                        <div class="mb-4">
-                            <label for="forUsername" class="block text-sm mb-2 text-gray-400">Email</label>
-                            <input type="email" id="forUsername" name="email"
-                                class="py-3 px-4 block w-full border-gray-200 rounded-sm text-sm focus:border-blue-600 focus:ring-0 "
-                                aria-describedby="hs-input-helper-text">
-                        </div>
-                        <!-- password -->
-                        <div class="mb-6">
-                            <label for="forPassword" class="block text-sm  mb-2 text-gray-400">Password</label>
-                            <input type="password" id="forPassword" name="password"
-                                class="py-3 px-4 block w-full border-gray-200 rounded-sm text-sm focus:border-blue-600 focus:ring-0 "
-                                aria-describedby="hs-input-helper-text">
-                        </div>
-                        <!-- checkbox -->
-                        <div class="flex justify-between">
-                            <div class="flex">
-                                <input type="checkbox"
-                                    class="shrink-0 mt-0.5 border-gray-200 rounded-[4px] text-blue-600 focus:ring-blue-500 "
-                                    id="hs-default-checkbox" checked>
-                                <label for="hs-default-checkbox" class="text-sm text-gray-500 ms-3">Remeber this
-                                    Device</label>
-                            </div>
-                            <a href="/" class="text-sm font-semibold text-blue-600 hover:text-blue-700">Forgot
-                                Password ?</a>
-                        </div>
-                        <!-- button -->
-                        <div class="grid my-6">
-                            <button class="btn py-[10px] text-base text-white font-medium hover:bg-blue-700" type="submit">Sign
-                                In</button>
-                        </div>
+    <div class="az-signin-wrapper">
+        <div class="az-card-signin">
+            <h1 class="az-logo">HR<span>I</span>S</h1>
+            <div class="az-signin-header">
+                <h2>Welcome back!</h2>
+                <h4>Please sign in to continue</h4>
 
-                        <div class="flex justify-center gap-2 items-center">
-                            <p class="text-base font-semibold text-gray-400">New to Spike?</p>
-                            <a href="./authentication-register.html"
-                                class="text-sm font-semibold text-blue-600 hover:text-blue-700">Create an account</a>
-                        </div>
-                </div>
+                <form action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" placeholder="Enter your email" name="email">
+                    </div><!-- form-group -->
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Enter your password" name="password">
+                    </div><!-- form-group -->
+                    <button type="submit" class="btn btn-az-primary btn-block">Sign In</button>
                 </form>
-            </div>
-        </div>
+            </div><!-- az-signin-header -->
+            <div class="az-signin-footer">
+                <p><a href="">Forgot password?</a></p>
+                <p>Don't have an account? <a href="page-signup.html">Create an Account</a></p>
+            </div><!-- az-signin-footer -->
+        </div><!-- az-card-signin -->
+    </div><!-- az-signin-wrapper -->
 
-        </div>
-        <!--end of project-->
-    </main>
+    <script src="/assets/lib/jquery/jquery.min.js"></script>
+    <script src="/assets/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/lib/ionicons/ionicons.js"></script>
+    <script src="/assets/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/assets/js/jquery.cookie.js" type="text/javascript"></script>
 
+    <script src="/assets/js/azia.js"></script>
+    <script>
+        $(function() {
+            'use strict'
 
-
-    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/libs/simplebar/dist/simplebar.min.js"></script>
-    <script src="/assets/libs/iconify-icon/dist/iconify-icon.min.js"></script>
-    <script src="/assets/libs/@preline/dropdown/index.js"></script>
-    <script src="/assets/libs/@preline/overlay/index.js"></script>
-    <script src="/assets/js/sidebarmenu.js"></script>
-
-    <!-- solar icons -->
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
-    <script src="/assets/libs/preline/dist/preline.js"></script>
-
+        });
+    </script>
 </body>
 
 </html>

@@ -4,11 +4,9 @@
      <!-- Start Vertical Layout Sidebar -->
      <!-- ---------------------------------- -->
      <div class="p-4">
-
          <a href="./" class="text-nowrap">
              <img src="/assets/images/logos/logo-light.svg" alt="Logo-Dark" />
          </a>
-
 
      </div>
      <div class="scroll-sidebar" data-simplebar="">
@@ -23,17 +21,6 @@
                      <a class="sidebar-link gap-3 py-2.5 my-1 text-base  flex items-center relative  rounded-md text-gray-500  w-full"
                          href="/index.html">
                          <i class="ti ti-layout-dashboard ps-2  text-2xl"></i> <span>Dashboard</span>
-                     </a>
-                 </li>
-
-                 <li class="sidebar-item">
-                     <a class="sidebar-link gap-3 py-2.5 my-1 text-base flex items-center justify-between relative rounded-md text-gray-500 w-full"
-                         target="_blank"
-                         href="https://bootstrapdemos.wrappixel.com/spike-tailwind/dist/main/index2.html">
-                         <div class="flex items-center gap-2">
-                             <i class="ti ti-chart-bar ps-2 text-2xl"></i> <span>Dashboard 2</span>
-                         </div>
-                         <span class="text-white bg-blue-700 rounded-3xl px-2 text-xs py-0.5 mr-5">Pro</span>
                      </a>
                  </li>
 
