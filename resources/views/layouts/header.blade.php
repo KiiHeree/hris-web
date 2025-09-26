@@ -11,48 +11,62 @@
              </div><!-- az-header-menu-header -->
              <ul class="nav">
                  <li class="nav-item active show">
-                     <a href="index.html" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>
+                     <a href="/" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>
                          Dashboard</a>
                  </li>
                  <li class="nav-item">
-                     <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i> Pages</a>
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-group-outline"></i> Employees</a>
                      <nav class="az-menu-sub">
-                         <a href="page-signin.html" class="nav-link">Sign In</a>
-                         <a href="page-signup.html" class="nav-link">Sign Up</a>
+                         <a href="{{ route('employee.employee') }}" class="nav-link">Employee Directory</a>
+                         <a href="{{ route('employee.department') }}" class="nav-link">Departement</a>
+                         <a href="{{ route('employee.position') }}" class="nav-link">Position</a>
                      </nav>
                  </li>
                  <li class="nav-item">
-                     <a href="chart-chartjs.html" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>
-                         Charts</a>
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-time"></i> Attendance</a>
+                     <nav class="az-menu-sub">
+                         <a href="/" class="nav-link">Daily Attendace </a>
+                         <a href="/" class="nav-link">Attendance Logs </a>
+                         <a href="/" class="nav-link">Overtime Request</a>
+                     </nav>
                  </li>
                  <li class="nav-item">
-                     <a href="form-elements.html" class="nav-link"><i class="typcn typcn-chart-bar-outline"></i>
-                         Forms</a>
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-credit-card"></i> Payrolls</a>
+                     <nav class="az-menu-sub">
+                         <a href="/" class="nav-link">Deduction & Allowance</a>
+                         <a href="/" class="nav-link">Payroll Reports</a>
+                     </nav>
                  </li>
                  <li class="nav-item">
-                     <a href="" class="nav-link with-sub"><i class="typcn typcn-book"></i> Components</a>
-                     <div class="az-menu-sub">
-                         <div class="container">
-                             <div>
-                                 <nav class="nav">
-                                     <a href="elem-buttons.html" class="nav-link">Buttons</a>
-                                     <a href="elem-dropdown.html" class="nav-link">Dropdown</a>
-                                     <a href="elem-icons.html" class="nav-link">Icons</a>
-                                     <a href="table-basic.html" class="nav-link">Table</a>
-                                 </nav>
-                             </div>
-                         </div><!-- container -->
-                     </div>
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-calendar-outline"></i> Leave</a>
+                     <nav class="az-menu-sub">
+                         <a href="/" class="nav-link">Request Leave</a>
+                         <a href="/" class="nav-link">Leave Approval</a>
+                         <a href="/" class="nav-link">Leave History</a>
+                     </nav>
                  </li>
+
+                 <li class="nav-item">
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-document-text"></i> Reports</a>
+                     <nav class="az-menu-sub">
+                         <a href="/" class="nav-link">Attendance Reports</a>
+                         <a href="/" class="nav-link">Payrolls Reports</a>
+                         <a href="/" class="nav-link">Leave Reports</a>
+                         <a href="/" class="nav-link">Overtime Reports</a>
+                     </nav>
+                 </li>
+                 <li class="nav-item">
+                     <a href="" class="nav-link with-sub"><i class="typcn typcn-cog-outline"></i> Setting</a>
+                     <nav class="az-menu-sub">
+                         <a href="/" class="nav-link">Users</a>
+                         <a href="{{ route('setting.role') }}" class="nav-link">Role</a>
+                         <a href="{{ route('setting.permission') }}" class="nav-link">Permission</a>
+                     </nav>
+                 </li>
+
              </ul>
          </div><!-- az-header-menu -->
          <div class="az-header-right">
-             <a href="https://www.bootstrapdash.com/demo/azia-free/docs/documentation.html" target="_blank"
-                 class="az-header-search-link"><i class="far fa-file-alt"></i></a>
-             <a href="" class="az-header-search-link"><i class="fas fa-search"></i></a>
-             <div class="az-header-message">
-                 <a href="#"><i class="typcn typcn-messages"></i></a>
-             </div><!-- az-header-message -->
              <div class="dropdown az-header-notification">
                  <a href="" class="new"><i class="typcn typcn-bell"></i></a>
                  <div class="dropdown-menu">
@@ -63,32 +77,10 @@
                      <p class="az-notification-text">You have 2 unread notification</p>
                      <div class="az-notification-list">
                          <div class="media new">
-                             <div class="az-img-user"><img src=/assets/img/faces/face2.jpg" alt=""></div>
+                             <div class="az-img-user"><img src="/assets/img/faces/face2.jpg" alt=""></div>
                              <div class="media-body">
                                  <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
                                  <span>Mar 15 12:32pm</span>
-                             </div><!-- media-body -->
-                         </div><!-- media -->
-                         <div class="media new">
-                             <div class="az-img-user online"><img src=/assets/img/faces/face3.jpg" alt="">
-                             </div>
-                             <div class="media-body">
-                                 <p><strong>Joyce Chua</strong> just created a new blog post</p>
-                                 <span>Mar 13 04:16am</span>
-                             </div><!-- media-body -->
-                         </div><!-- media -->
-                         <div class="media">
-                             <div class="az-img-user"><img src=/assets/img/faces/face4.jpg" alt=""></div>
-                             <div class="media-body">
-                                 <p><strong>Althea Cabardo</strong> just created a new blog post</p>
-                                 <span>Mar 13 02:56am</span>
-                             </div><!-- media-body -->
-                         </div><!-- media -->
-                         <div class="media">
-                             <div class="az-img-user"><img src=/assets/img/faces/face5.jpg" alt=""></div>
-                             <div class="media-body">
-                                 <p><strong>Adrian Monino</strong> added new comment on your photo</p>
-                                 <span>Mar 12 10:40pm</span>
                              </div><!-- media-body -->
                          </div><!-- media -->
                      </div><!-- az-notification-list -->
@@ -103,19 +95,17 @@
                      </div>
                      <div class="az-header-profile">
                          <div class="az-img-user">
-                             <img src=/assets/img/faces/face1.jpg" alt="">
+                             <img src="/assets/img/faces/face1.jpg" alt="">
                          </div><!-- az-img-user -->
-                         <h6>Aziana Pechon</h6>
-                         <span>Premium Member</span>
+                         <h6>{{ Auth::user()->name }}</h6>
+                         <span>{{ Auth::user()->getRoleNames()->first() }}</span>
                      </div><!-- az-header-profile -->
 
                      <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My
                          Profile</a>
-                     <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
-                     <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
                      <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account
                          Settings</a>
-                     <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-power-outline"></i>
+                     <a href="{{ route('logout') }}" class="dropdown-item"><i class="typcn typcn-power-outline"></i>
                          Sign Out</a>
                  </div><!-- dropdown-menu -->
              </div>
