@@ -33,7 +33,7 @@
 
     <!-- azia CSS -->
     <link rel="stylesheet" href="/assets/css/azia.css">
-
+    @livewireStyles()
 </head>
 
 <body>
@@ -66,8 +66,7 @@
     <script>
         // $(document).ready(function() {
         //     $('#table').DataTable();
-        // });
-
+        // })
         setTimeout(() => {
             const alertBox = document.getElementById('alertBox');
             if (alertBox) {
@@ -78,13 +77,15 @@
 
         document.addEventListener('livewire:init', () => {
             Livewire.on('reinitComponents', () => {
+
                 setTimeout(() => {
                     const alertBox = document.getElementById('alertBox');
                     if (alertBox) {
                         const bsAlert = new bootstrap.Alert(alertBox);
                         bsAlert.close(); // auto close
                     }
-                }, 3000);
+
+                }, 1000);
 
 
 
@@ -96,6 +97,7 @@
             });
         });
     </script>
+    @livewireScripts()
 </body>
 
 </html>

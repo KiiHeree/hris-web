@@ -11,4 +11,9 @@ class Position extends Model
     protected $fillable = [
         'name'
     ];
+
+     public function employees()
+    {
+        return $this->hasMany(Employees::class, 'department_id');
+    }
 }
