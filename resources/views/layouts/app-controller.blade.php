@@ -33,8 +33,6 @@
 
     <!-- azia CSS -->
     <link rel="stylesheet" href="/assets/css/azia.css">
-
-    @livewireStyles()
 </head>
 
 <body>
@@ -44,7 +42,7 @@
 
         <div class="container">
             <div class="az-content-body">
-                {{ $slot }}
+                @yield('content')
             </div><!-- az-content-body -->
         </div>
     </div><!-- az-content -->
@@ -98,7 +96,6 @@
             });
         });
     </script>
-    @livewireScripts()
 </body>
 
 </html>

@@ -1,31 +1,36 @@
 @section('title', 'Dashboard')
 <div>
     <div class="az-dashboard-one-title">
+        @if (Session::has('success'))
+            <div class="alert alert-success" id="alertBox" style="position: absolute; top: 80px; right: 10px;"
+                role="alert">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+        @if (Session::has('error'))
+            <div class="alert alert-danger" id="alertBox" style="position: absolute; top: 80px; right: 10px;"
+                role="alert">
+                {{ Session::get('error') }}
+            </div>
+        @endif
         <div>
             <h2 class="az-dashboard-title">Hi, welcome back!</h2>
             <p class="az-dashboard-text">Your web analytics dashboard template.</p>
         </div>
-        <div class="az-content-header-right">
-            <div class="media">
-                <div class="media-body">
-                    <label>Start Date</label>
-                    <h6>Oct 10, 2018</h6>
-                </div><!-- media-body -->
-            </div><!-- media -->
-            <div class="media">
-                <div class="media-body">
-                    <label>End Date</label>
-                    <h6>Oct 23, 2018</h6>
-                </div><!-- media-body -->
-            </div><!-- media -->
-            <div class="media">
-                <div class="media-body">
-                    <label>Event Category</label>
-                    <h6>All Categories</h6>
-                </div><!-- media-body -->
-            </div><!-- media -->
-            <a href="" class="btn btn-purple">Export</a>
-        </div>
+        @if (Auth::user()->getRoleNames()->first() == 'employee')
+            <div class="az-content-header-right">
+                <button class="btn btn-purple" type="button" {{ $status == 'done' ? 'disabled' : '' }}
+                    wire:click="AttendanceProces('{{ $status }}')">
+                    @if ($status == 'done')
+                        Done
+                    @elseif ($status == 'not_checked_in')
+                        Check In
+                    @elseif ($status == 'checked_in')
+                        Check Out
+                    @endif
+                </button>
+            </div>
+        @endif
     </div>
     <div class="az-dashboard-nav">
         <nav class="nav">

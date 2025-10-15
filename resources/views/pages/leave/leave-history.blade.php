@@ -1,11 +1,10 @@
-@section('title', 'Employee Directory')
+@section('title', 'Leave History')
 @extends('layouts.app-controller')
 @section('content')
-
     <div class="az-content-body pd-lg-l-40 d-flex flex-column">
         <div class="az-content-breadcrumb">
-            <span>Employee</span>
-            <span>Employee Directory</span>
+            <span>Leave</span>
+            <span>Leave History</span>
         </div>
         @if (Session::has('success'))
             <div class="alert alert-success" id="alertBox" style="position: absolute; top: 80px; right: 10px;" role="alert">
@@ -17,19 +16,18 @@
                 {{ Session::get('error') }}
             </div>
         @endif
-        <div class="az-content-label mg-b-5">Employee Directory</div>
-        <p class="mg-b-5">This menu is used to manage list of Employee.</p>
-        <a class="btn btn-primary btn-with-icon my-3 col-sm-4 col-md-2" href="{{ route('employee.employee.create') }}"><i
-                class="typcn typcn-edit"></i>
-            Create</a>
+        <div class="az-content-label mg-b-5">Leave History</div>
+        <p class="mg-b-5">This menu is used to manage list of Leave history.</p>
+
         <div class="table-responsive">
             <table class="table table-bordered mg-b-0">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Name</th>
-                        <th>Departement</th>
-                        <th>Position</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Approver</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,16 +35,17 @@
                     @foreach ($data as $item)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $item->name }}</td>
-                            <td>{{ $item->employee->department->name }}</td>
-                            <td>{{ $item->employee->position->name }}</td>
+                            <td>{{ $item->start_date }} - {{ $item->end_date }}</td>
+                            <td>{{ $item->type }}</td>
+                            <td>{{ $item->approver ? $item->approver->name : '-' }}</td>
+                            <td>{{ $item->status }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="{{ route('employee.employee.edit', $item->id) }}"
+                                    <a href="{{ route('leave.leave.edit', $item->id) }}"
                                         class="btn btn-warning btn-icon mr-1"><i class="typcn typcn-edit"></i></a>
-                                    <a href="{{ route('employee.employee.show', $item->id) }}"
+                                    <a href="{{ route('leave.leave.show', $item->id) }}"
                                         class="btn btn-primary btn-icon mr-1"><i class="typcn typcn-eye"></i></a>
-                                    <form action="{{ route('employee.employee.destroy', $item->id) }}"
+                                    <form action="{{ route('leave.leave.destroy', $item->id) }}"
                                         enctype="multipart/form-data" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -62,6 +61,4 @@
             </table>
         </div><!-- table-responsive -->
     </div><!-- az-content-body -->
-
-
 @endsection

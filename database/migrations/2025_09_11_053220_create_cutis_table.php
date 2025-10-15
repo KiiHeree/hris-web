@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cutis', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained()->onDelete('cascade');
+            $table->text('deskripsi');
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('type', ['izin', 'sakit', 'cuti']);

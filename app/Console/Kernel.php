@@ -10,10 +10,12 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
-    protected function schedule(Schedule $schedule): void
-    {
-        // $schedule->command('inspire')->hourly();
-    }
+    protected function schedule(Schedule $schedule)
+{
+    $schedule->command('attendance:generate-from-leaves')->dailyAt('00:05');
+    $schedule->command('attendance:generate-from-leaves')->dailyAt('00:05')->appendOutputTo(storage_path('logs/attendance-job.log'));
+
+}
 
     /**
      * Register the commands for the application.

@@ -10,22 +10,26 @@
                  <a href="" class="close">&times;</a>
              </div><!-- az-header-menu-header -->
              <ul class="nav">
-                 <li class="nav-item active show">
+                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }} show">
                      <a href="/" class="nav-link"><i class="typcn typcn-chart-area-outline"></i>
                          Dashboard</a>
                  </li>
-                 <li class="nav-item">
+                 <li class="nav-item {{ request()->is('employee*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-group-outline"></i> Employees</a>
                      <nav class="az-menu-sub">
-                         <a href="{{ route('employee.employee') }}" class="nav-link">Employee Directory</a>
-                         <a href="{{ route('employee.department') }}" class="nav-link">Departement</a>
-                         <a href="{{ route('employee.position') }}" class="nav-link">Position</a>
+                         <a href="{{ route('employee.employee.index') }}"
+                             class="nav-link {{ Route::is('employee.employee.index') ? 'active' : '' }}">Employee
+                             Directory</a>
+                         <a href="{{ route('employee.department') }}"
+                             class="nav-link {{ Route::is('employee.department') ? 'active' : '' }}">Departement</a>
+                         <a href="{{ route('employee.position') }}" class="nav-link 
+                             {{ Route::is('employee.position') ? 'active' : '' }}">Position</a>
                      </nav>
                  </li>
-                 <li class="nav-item">
+                 <li class="nav-item {{ request()->is('attendance*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-time"></i> Attendance</a>
                      <nav class="az-menu-sub">
-                         <a href="/" class="nav-link">Daily Attendace </a>
+                         <a href="{{route('attendance.daily_attendance')}}" class="nav-link {{ Route::is('attendance.daily_attendance') ? 'active' : '' }}">Daily Attendace </a>
                          <a href="/" class="nav-link">Attendance Logs </a>
                          <a href="/" class="nav-link">Overtime Request</a>
                      </nav>
@@ -37,30 +41,36 @@
                          <a href="/" class="nav-link">Payroll Reports</a>
                      </nav>
                  </li>
-                 <li class="nav-item">
+                 <li class="nav-item {{ request()->is('leave*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-calendar-outline"></i> Leave</a>
                      <nav class="az-menu-sub">
-                         <a href="/" class="nav-link">Request Leave</a>
-                         <a href="/" class="nav-link">Leave Approval</a>
-                         <a href="/" class="nav-link">Leave History</a>
+                         <a href="{{ route('leave.leave.create') }}"
+                             class="nav-link {{ Route::is('leave.leave.create') ? 'active' : '' }}">Request Leave</a>
+                         <a href="{{ route('leave.approval_page') }}"
+                             class="nav-link {{ Route::is('leave.approval_page') ? 'active' : '' }}">Leave Approval</a>
+                         <a href="{{ route('leave.leave.index') }}"
+                             class="nav-link {{ Route::is('leave.leave.index') ? 'active' : '' }}">Leave History</a>
                      </nav>
                  </li>
 
-                 <li class="nav-item">
+                 <li class="nav-item {{ request()->is('report*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-document-text"></i> Reports</a>
                      <nav class="az-menu-sub">
                          <a href="/" class="nav-link">Attendance Reports</a>
                          <a href="/" class="nav-link">Payrolls Reports</a>
-                         <a href="/" class="nav-link">Leave Reports</a>
+                         <a href="{{ route('report.leave_report') }}"
+                             class="nav-link {{ Route::is('report.leave_report') ? 'active' : '' }}">Leave Reports</a>
                          <a href="/" class="nav-link">Overtime Reports</a>
                      </nav>
                  </li>
-                 <li class="nav-item">
+                 <li class="nav-item {{ request()->is('setting*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-cog-outline"></i> Setting</a>
                      <nav class="az-menu-sub">
                          <a href="/" class="nav-link">Users</a>
-                         <a href="{{ route('setting.role') }}" class="nav-link">Role</a>
-                         <a href="{{ route('setting.permission') }}" class="nav-link">Permission</a>
+                         <a href="{{ route('setting.role') }}"
+                             class="nav-link {{ Route::is('setting.role') ? 'active' : '' }}">Role</a>
+                         <a href="{{ route('setting.permission') }}"
+                             class="nav-link {{ Route::is('setting.permission') ? 'active' : '' }}">Permission</a>
                      </nav>
                  </li>
 
