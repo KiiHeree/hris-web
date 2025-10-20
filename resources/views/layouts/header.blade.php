@@ -22,15 +22,18 @@
                              Directory</a>
                          <a href="{{ route('employee.department') }}"
                              class="nav-link {{ Route::is('employee.department') ? 'active' : '' }}">Departement</a>
-                         <a href="{{ route('employee.position') }}" class="nav-link 
+                         <a href="{{ route('employee.position') }}"
+                             class="nav-link 
                              {{ Route::is('employee.position') ? 'active' : '' }}">Position</a>
                      </nav>
                  </li>
                  <li class="nav-item {{ request()->is('attendance*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-time"></i> Attendance</a>
                      <nav class="az-menu-sub">
-                         <a href="{{route('attendance.daily_attendance')}}" class="nav-link {{ Route::is('attendance.daily_attendance') ? 'active' : '' }}">Daily Attendace </a>
-                         <a href="/" class="nav-link">Attendance Logs </a>
+                         <a href="{{ route('attendance.daily_attendance') }}"
+                             class="nav-link {{ Route::is('attendance.daily_attendance') ? 'active' : '' }}">Daily
+                             Attendace </a>
+                         <a href="{{ route('attendance.attendance_log') }}" class="nav-link {{ Route::is('attendance.attendance_log') ? 'active' : '' }}">Attendance Logs </a>
                          <a href="/" class="nav-link">Overtime Request</a>
                      </nav>
                  </li>

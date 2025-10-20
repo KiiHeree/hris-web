@@ -4,6 +4,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\ProfileController;
 use App\Livewire\AttendanceLivewire;
+use App\Livewire\AttendanceLogLivewire;
 use App\Livewire\DailyAttendanceLivewire;
 use App\Livewire\DashboardLivewire;
 use App\Livewire\DepartmentLivewire;
@@ -53,12 +54,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/approve/{id}', [LeaveController::class, 'approve'])->name('approve');
     });
 
-    Route::prefix('report')->name('report.')->group(function() {
-        Route::get('/leave_report',[LeaveController::class, 'leave_reports'])->name('leave_report');
+    Route::prefix('report')->name('report.')->group(function () {
+        Route::get('/leave_report', [LeaveController::class, 'leave_reports'])->name('leave_report');
     });
 
-    Route::prefix('attendance')->name('attendance.')->group(function() {
-        Route::get('/daily_attendance',DailyAttendanceLivewire::class)->name('daily_attendance');
+    Route::prefix('attendance')->name('attendance.')->group(function () {
+        Route::get('/daily_attendance', DailyAttendanceLivewire::class)->name('daily_attendance');
+        Route::get('/attendance_log', AttendanceLogLivewire::class)->name('attendance_log');
     });
 
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
