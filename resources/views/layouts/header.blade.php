@@ -33,8 +33,12 @@
                          <a href="{{ route('attendance.daily_attendance') }}"
                              class="nav-link {{ Route::is('attendance.daily_attendance') ? 'active' : '' }}">Daily
                              Attendace </a>
-                         <a href="{{ route('attendance.attendance_log') }}" class="nav-link {{ Route::is('attendance.attendance_log') ? 'active' : '' }}">Attendance Logs </a>
-                         <a href="/" class="nav-link">Overtime Request</a>
+                         <a href="{{ route('attendance.attendance_log') }}"
+                             class="nav-link {{ Route::is('attendance.attendance_log') ? 'active' : '' }}">Attendance
+                             Logs </a>
+                         <a href="{{ route('attendance.overtime_request') }}"
+                             class="nav-link {{ Route::is('attendance.overtime_request') ? 'active' : '' }}">Overtime
+                             Request</a>
                      </nav>
                  </li>
                  <li class="nav-item">
@@ -63,13 +67,16 @@
                          <a href="/" class="nav-link">Payrolls Reports</a>
                          <a href="{{ route('report.leave_report') }}"
                              class="nav-link {{ Route::is('report.leave_report') ? 'active' : '' }}">Leave Reports</a>
-                         <a href="/" class="nav-link">Overtime Reports</a>
+                         <a href="{{ route('report.overtime_report') }}"
+                             class="nav-link {{ Route::is('report.overtime_report') ? 'active' : '' }}">Overtime
+                             Reports</a>
                      </nav>
                  </li>
                  <li class="nav-item {{ request()->is('setting*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-cog-outline"></i> Setting</a>
                      <nav class="az-menu-sub">
-                         <a href="/" class="nav-link">Users</a>
+                         <a href="{{ route('setting.users.index') }}"
+                             class="nav-link {{ Route::is('setting.users.index') ? 'active' : '' }}">Users</a>
                          <a href="{{ route('setting.role') }}"
                              class="nav-link {{ Route::is('setting.role') ? 'active' : '' }}">Role</a>
                          <a href="{{ route('setting.permission') }}"

@@ -19,7 +19,7 @@
         </div>
         @if (Auth::user()->getRoleNames()->first() == 'employee')
             <div class="az-content-header-right">
-                <button class="btn btn-purple" type="button" {{ $status == 'done' ? 'disabled' : '' }}
+                <button class="btn btn-purple" type="button" {{ $status == 'done' || $status == 'libur' ? 'disabled' : '' }}
                     wire:click="AttendanceProces('{{ $status }}')">
                     @if ($status == 'done')
                         Done
@@ -27,6 +27,8 @@
                         Check In
                     @elseif ($status == 'checked_in')
                         Check Out
+                    @elseif ($status == 'libur')
+                        Libur
                     @endif
                 </button>
             </div>

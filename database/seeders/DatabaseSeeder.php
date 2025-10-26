@@ -60,5 +60,11 @@ class DatabaseSeeder extends Seeder
                 'bank_account' => '1234567890',
             ]
         );
+
+        $this->call([
+            WorkScheduleSeeder::class,
+            HolidaySeeder::class,
+            AttendanceSeeder::class,
+        ]);
     }
 }

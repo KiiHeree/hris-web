@@ -3,14 +3,17 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LeaveController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use App\Livewire\AttendanceLivewire;
 use App\Livewire\AttendanceLogLivewire;
 use App\Livewire\DailyAttendanceLivewire;
 use App\Livewire\DashboardLivewire;
 use App\Livewire\DepartmentLivewire;
 use App\Livewire\EmployeeLivewire;
+use App\Livewire\OvertimeReportsLivewire;
 use App\Livewire\PermissionLivewire;
 use App\Livewire\PositionLivewire;
+use App\Livewire\RequestOvertimeLivewire;
 use App\Livewire\RoleLivewire;
 use App\Livewire\RolePermissionLivewire;
 use App\Models\Department;
@@ -45,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('setting')->name('setting.')->group(function () {
         Route::get('/role', RoleLivewire::class)->name('role');
         Route::get('/permission', PermissionLivewire::class)->name('permission');
+        Route::resource('users', UsersController::class);
     });
 
     Route::prefix('leave')->name('leave.')->group(function () {
@@ -56,11 +60,13 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('report')->name('report.')->group(function () {
         Route::get('/leave_report', [LeaveController::class, 'leave_reports'])->name('leave_report');
+        Route::get('/overtime_report', OvertimeReportsLivewire::class)->name('overtime_report');
     });
 
     Route::prefix('attendance')->name('attendance.')->group(function () {
         Route::get('/daily_attendance', DailyAttendanceLivewire::class)->name('daily_attendance');
         Route::get('/attendance_log', AttendanceLogLivewire::class)->name('attendance_log');
+        Route::get('/overtime_request', RequestOvertimeLivewire::class)->name('overtime_request');
     });
 
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

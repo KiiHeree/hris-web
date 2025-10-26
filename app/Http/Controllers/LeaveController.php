@@ -36,7 +36,7 @@ class LeaveController extends Controller
     {
         $status_update = Cuti::where('status', '=', 'pending')->where('id', $id)->update([
             'status' => $request->status,
-            'approver' => Auth::id()
+            'approver_id' => Auth::id()
         ]);
 
         if ($status_update) {

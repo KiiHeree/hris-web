@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('check_in')->nullable();
             $table->time('check_out')->nullable();
-            $table->enum('status', ['hadir', 'izin', 'sakit', 'cuti', 'lembur', 'alpha','telat'])->default('hadir');
+            $table->enum('status', ['hadir', 'izin', 'sakit', 'cuti', 'lembur', 'alpha','telat','libur'])->default('hadir');
             $table->decimal('overtime_hours', 5, 2)->default(0); // total jam lembur
             $table->boolean('is_holiday')->default(false); // kalau sabtu/minggu/libur nasional
             $table->string('source')->nullable(); // QR/manual/import
