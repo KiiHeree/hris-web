@@ -22,4 +22,8 @@ class Payroll extends Model
         return $this->hasMany(PayrollItem::class);
     }
 
+    public function employee() {
+        return $this->belongsTo(User::class);
+    }
+
 }

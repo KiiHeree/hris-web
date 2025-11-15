@@ -35,17 +35,17 @@ class DatabaseSeeder extends Seeder
         );
         $admin->assignRole('admin');
 
-        // ====== HRD: Intan ======
+        // ====== HRD: Ella ======
         $hrd = User::firstOrCreate(
-            ['email' => 'intan@example.com'],
-            ['name' => 'Intan', 'password' => bcrypt('password')]
+            ['email' => 'ella@example.com'],
+            ['name' => 'Ella', 'password' => bcrypt('password')]
         );
         $hrd->assignRole('hrd');
 
         // ====== Employee: Ella ======
         $staff = User::firstOrCreate(
-            ['email' => 'ella@example.com'],
-            ['name' => 'Ella', 'password' => bcrypt('password')]
+            ['email' => 'intan@example.com'],
+            ['name' => 'Intan', 'password' => bcrypt('password')]
         );
         $staff->assignRole('employee');
 
@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             WorkScheduleSeeder::class,
             HolidaySeeder::class,
-            AttendanceSeeder::class,
+            // AttendanceSeeder::class,
         ]);
     }
 }

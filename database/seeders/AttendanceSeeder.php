@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Attendance;
 use App\Models\Holiday;
+use App\Models\Overtime;
 use App\Models\User;
 use App\Models\WorkScedule;
 use Carbon\Carbon;
@@ -27,6 +28,30 @@ class AttendanceSeeder extends Seeder
 
         $startDate = Carbon::now()->subMonth()->startOfMonth(); // bulan lalu tanggal 1
         $endDate = Carbon::now()->endOfMonth();
+        $check_out_time = Carbon::parse('16:00');
+
+        // random hour
+        function weightedRandom($weights)
+        {
+            $total = array_sum($weights);
+            $rand = rand(1, $total);
+
+            foreach ($weights as $hour => $weight) {
+                if ($rand <= $weight) {
+                    return $hour;
+                }
+                $rand -= $weight;
+            }
+        }
+        $weightedHours = [
+            16 => 80,
+            17 => 50,
+            18 => 30,
+            19 => 20,
+            20 => 10,
+        ];
+
+
 
         foreach ($employees as $employee) {
             $this->command->info("👷 Generate attendance buat {$employee->name}");
@@ -36,10 +61,10 @@ class AttendanceSeeder extends Seeder
 
                 $dayOfWeek = strtolower($date->isoFormat('dddd')); // senin, selasa, dst
 
-                // 🔹 Cek libur nasional
+                //  Cek libur 
                 $isHoliday =  Holiday::whereDate('date', $date)->exists();
 
-                // 🔹 Cek jadwal kerja hari ini
+                //  Cek jadwal kerja hari ini
                 $workSchedule = WorkScedule::where('day_of_week', $dayOfWeek)->first();
 
                 if ($isHoliday || !$workSchedule || !$workSchedule->is_working_day) {
@@ -48,8 +73,12 @@ class AttendanceSeeder extends Seeder
                 }
 
                 // Randomize check-in dan check-out
-                $checkIn = Carbon::parse($date->format('Y-m-d') . ' 08:' . rand(0, 59));
-                $checkOut = Carbon::parse($date->format('Y-m-d') . ' 17:' . rand(0, 59));
+                $checkIn = Carbon::parse(' 07:' . rand(0, 59));
+                $hour = weightedRandom($weightedHours);
+                $minute = rand(0, 59);
+                $checkOut = Carbon::createFromTime($hour, $minute);
+
+                $diffInHours =  $check_out_time->diffInHours($checkOut, false);
 
                 // Tentukan status (kadang izin/sakit/random aja)
                 $statusChance = rand(1, 100);
@@ -63,6 +92,17 @@ class AttendanceSeeder extends Seeder
                     $status = 'telat';
                 } else {
                     $status = 'hadir';
+                }
+
+                if ($status == 'hadir' && $diffInHours >= 1) {
+                    Overtime::create([
+                        'employee_id' => $employee->id,
+                        'date' => $date->format('Y-m-d'),
+                        'start_time' => Carbon::parse('16:00'),
+                        'end_time' => $checkOut,
+                        'total_hours' => $diffInHours,
+                        'status' => 'pending',
+                    ]);
                 }
 
                 Attendance::updateOrCreate(

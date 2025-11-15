@@ -31,7 +31,7 @@
                             <td>{{ $item->start_time }} -> {{$item->end_time}}</td>
                             <td>{{ $item->status }}</td>
                             <td>{{ $item->total_hours }}</td>
-                            <td>{{ $item->approver->name }}</td>/
+                            <td>{{ $item->approver ? $item->approver->name : '-'  }}</td>
                         </tr>
                     @endforeach
                 </tbody>

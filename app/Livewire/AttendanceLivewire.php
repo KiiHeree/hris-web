@@ -24,7 +24,7 @@ class AttendanceLivewire extends Component
     public function getStatusAttendance()
     {
         $today = Carbon::now()->toDateString();
-        $dayOfWeek = strtolower($today->isoFormat('dddd')); // senin, selasa, dst
+        $dayOfWeek = strtolower(Carbon::now()->isoFormat('dddd')); // senin, selasa, dst
         $id = Auth::id();
         $attendance = Attendance::where('employee_id', $id)->where('date', $today)->first();
 

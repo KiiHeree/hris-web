@@ -41,11 +41,13 @@
                              Request</a>
                      </nav>
                  </li>
-                 <li class="nav-item">
+                 <li class="nav-item {{ request()->is('payroll*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-credit-card"></i> Payrolls</a>
                      <nav class="az-menu-sub">
                          <a href="/" class="nav-link">Deduction & Allowance</a>
-                         <a href="/" class="nav-link">Payroll Reports</a>
+                         <a href="{{ route('payroll.payroll_management') }}"
+                             class="nav-link {{ Route::is('payroll.payroll_management') ? 'active' : '' }}">Payroll
+                             Management</a>
                      </nav>
                  </li>
                  <li class="nav-item {{ request()->is('leave*') ? 'active' : '' }}">
@@ -64,7 +66,9 @@
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-document-text"></i> Reports</a>
                      <nav class="az-menu-sub">
                          <a href="/" class="nav-link">Attendance Reports</a>
-                         <a href="/" class="nav-link">Payrolls Reports</a>
+                         <a href="{{ route('report.payroll_report') }}"
+                             class="nav-link {{ Route::is('report.payroll_report') ? 'active' : '' }}">Payrolls
+                             Reports</a>
                          <a href="{{ route('report.leave_report') }}"
                              class="nav-link {{ Route::is('report.leave_report') ? 'active' : '' }}">Leave Reports</a>
                          <a href="{{ route('report.overtime_report') }}"
@@ -81,6 +85,11 @@
                              class="nav-link {{ Route::is('setting.role') ? 'active' : '' }}">Role</a>
                          <a href="{{ route('setting.permission') }}"
                              class="nav-link {{ Route::is('setting.permission') ? 'active' : '' }}">Permission</a>
+                         <a href="{{ route('setting.work_schedule.index') }}"
+                             class="nav-link {{ Route::is('setting.work_schedule.index') ? 'active' : '' }}">Work
+                             Schedule</a>
+                         <a href="{{ route('setting.holiday.index') }}"
+                             class="nav-link {{ Route::is('setting.holiday.index') ? 'active' : '' }}">Holiday</a>
                      </nav>
                  </li>
 

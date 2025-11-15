@@ -2,6 +2,12 @@
 @extends('layouts.app-controller')
 @section('content')
     <div class="az-content-body pd-lg-l-40 d-flex flex-column">
+
+        @if (Session::has('error'))
+            <div class="alert alert-danger" id="alertBox" style="position: absolute; top: 80px; right: 10px;" role="alert">
+                {{ Session::get('error') }}
+            </div>
+        @endif
         <div class="az-content-breadcrumb">
             <span>Employee</span>
             <span>Employee Directory</span>

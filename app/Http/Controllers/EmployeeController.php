@@ -7,6 +7,7 @@ use App\Models\Employees;
 use App\Models\Position;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
@@ -53,31 +54,35 @@ class EmployeeController extends Controller
         ]);
 
 
+        try {
+            DB::beginTransaction();
+            $password = Hash::make($request->password);
 
-        $password = Hash::make($request->password);
+            $store_user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $password,
+            ]);
 
-        $store_user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $password,
-        ]);
+            $store_employee = Employees::create([
+                'user_id' => $store_user->id,
+                'nik' => $request->nik,
+                'join_date' => $request->join_date,
+                'department_id' => $request->department_id,
+                'position_id' => $request->position_id,
+                'salary_basic' => $request->salary_basic,
+                'bank_account' => $request->bank_account,
+            ]);
 
-        $store_employee = Employees::create([
-            'user_id' => $store_user->id,
-            'nik' => $request->nik,
-            'join_date' => $request->join_date,
-            'department_id' => $request->department_id,
-            'position_id' => $request->position_id,
-            'salary_basic' => $request->salary_basic,
-            'bank_account' => $request->bank_account,
-        ]);
+            $store_user->assignRole('employee');
+            DB::commit();
+            if ($store_employee && $store_user) {
+                return redirect()->route('employee.employee.index')->with('success', 'The data has been created successfully');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
 
-        $store_user->assignRole('employee');
-
-        if ($store_user && $store_employee) {
-            return redirect()->route('employee.employee.index')->with('success', 'The data has been created successfully');
-        } else {
-            return redirect()->route('employee.employee.index')->with('error', 'Failed to created the data. Please try again');
+            return back()->with('error', 'Failed to create employee: ' . $e->getMessage());
         }
     }
 
