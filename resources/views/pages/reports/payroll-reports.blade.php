@@ -81,6 +81,6 @@
                     @endforeach
                 </tbody>
             </table>
-        </div><!-- table-responsive -->
-    </div><!-- az-content-body -->
+        </div>
+    </div>
 </div>

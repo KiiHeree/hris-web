@@ -11,19 +11,19 @@
         <div class="mt-2">
             <div class="form-group has-success">
                 <label for="exampleInputEmail1">Employee Name</label>
-                <input class="form-control" type="text" value="{{ $payroll->employee->name }}">
+                <input class="form-control" type="text" value="{{ $payroll->employee->name }}" disabled>
             </div>
             <div class="form-group has-success">
                 <label for="exampleInputEmail1">Salary Basic</label>
-                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->salary_basic) }}">
+                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->salary_basic) }}" disabled>
             </div>
             <div class="form-group has-success">
                 <label for="exampleInputEmail1">Salary Net</label>
-                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->net) }}">
+                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->net) }}" disabled>
             </div>
             <div class="form-group has-success">
                 <label for="exampleInputEmail1">Status</label>
-                <input class="form-control" class="form-control" type="text" value="{{ $payroll->status }}">
+                <input class="form-control" class="form-control" type="text" value="{{ $payroll->status }}" disabled>
             </div>
         </div>
 

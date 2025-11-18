@@ -19,13 +19,6 @@ class LeaveController extends Controller
     }
 
 
-    public function leave_reports()
-    {
-        $data = Cuti::all();
-
-        return view('pages.reports.leave-reports', compact('data'));
-    }
-
     public function approval_page()
     {
         $data = Cuti::where('status', '=', 'pending')->get();

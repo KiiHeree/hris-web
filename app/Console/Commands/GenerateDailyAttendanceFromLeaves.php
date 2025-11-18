@@ -27,7 +27,7 @@ class GenerateDailyAttendanceFromLeaves extends Command
 
         // Kalau hari ini libur nasional atau bukan hari kerja, skip
         if ($isHoliday || !$workSchedule || !$workSchedule->is_working_day) {
-            $this->info('🛑 Today is a holiday or non-working day. Skipping leave generation.');
+            $this->info('Today is a holiday or non-working day. Skipping leave generation.');
             return;
         }
 
@@ -38,7 +38,7 @@ class GenerateDailyAttendanceFromLeaves extends Command
             ->get();
 
         if ($leaves->isEmpty()) {
-            $this->info('ℹ️ No approved leaves for today.');
+            $this->info(' No approved leaves for today.');
             return;
         }
 
@@ -62,9 +62,9 @@ class GenerateDailyAttendanceFromLeaves extends Command
                 ]
             );
 
-            $this->info("✅ Attendance generated for employee #{$leave->employee_id} ({$leave->type})");
+            $this->info("Attendance generated for employee #{$leave->employee_id} ({$leave->type})");
         }
 
-        $this->info('🎉 Leave attendance generation completed successfully!');
+        $this->info('Leave attendance generation completed successfully!');
     }
 }

@@ -54,7 +54,7 @@ class AttendanceSeeder extends Seeder
 
 
         foreach ($employees as $employee) {
-            $this->command->info("👷 Generate attendance buat {$employee->name}");
+            $this->command->info("Generate attendance buat {$employee->name}");
 
             $date = $startDate->copy();
             while ($date->lte($endDate)) {
@@ -80,7 +80,7 @@ class AttendanceSeeder extends Seeder
 
                 $diffInHours =  $check_out_time->diffInHours($checkOut, false);
 
-                // Tentukan status (kadang izin/sakit/random aja)
+                // Tentukan status 
                 $statusChance = rand(1, 100);
                 if ($statusChance <= 5) {
                     $status = 'izin';
@@ -123,6 +123,6 @@ class AttendanceSeeder extends Seeder
             }
         }
 
-        $this->command->info('✅ Dummy attendance berhasil digenerate untuk 1 bulan!');
+        $this->command->info('Dummy attendance berhasil digenerate untuk 1 bulan!');
     }
 }

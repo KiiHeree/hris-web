@@ -1,10 +1,9 @@
-@section('title', 'Leave Reports')
+@section('title', 'Attendance Report')
 <div>
-
     <div class="az-content-body pd-lg-l-40 d-flex flex-column">
         <div class="az-content-breadcrumb">
-            <span>Leave</span>
-            <span>Leave Reports</span>
+            <span>Report</span>
+            <span>Attendance Reports</span>
         </div>
         @if (Session::has('success'))
             <div class="alert alert-success" id="alertBox" style="position: absolute; top: 80px; right: 10px;"
@@ -18,8 +17,9 @@
                 {{ Session::get('error') }}
             </div>
         @endif
-        <div class="az-content-label mg-b-5">Leave Reports</div>
-        <p class="mg-b-5">This menu is used to manage list of Leave Reports.</p>
+
+        <div class="az-content-label mg-b-5">Attendace Reports</div>
+        <p class="mg-b-5">This menu is used to manage list of Attendance Reports.</p>
         <form wire:submit.prevent="filter" class="mt-2">
             <div class="row row-sm mb-2">
                 <div class="col-lg">
@@ -31,51 +31,46 @@
                                 {{ $item->name }}</option>
                         @endforeach
                     </select>
-                </div><!-- col -->
+                </div>
                 <div class="col-lg mg-t-10 mg-lg-t-0">
                     <label for="exampleInputEmail1">Start Date</label>
                     <input class="form-control" wire:model="start_date" type="date" value="{{ old('start_date') }}">
-                </div><!-- col -->
+                </div>
                 <div class="col-lg mg-t-10 mg-lg-t-0">
                     <label for="exampleInputEmail1">End Date</label>
                     <input class="form-control" wire:model="end_date" type="date" value="{{ old('end_date') }}">
-                </div><!-- col -->
+                </div>
             </div>
             <button type="submit" class="btn btn-outline-success">Filter</button>
         </form>
+
         <div class="table-responsive mt-2">
-            <table class="table table-bordered mg-b-0">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Employee</th>
-                        <th>Date</th>
-                        <th>Type</th>
-                        <th>Approver</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $item)
+            <div class="table-responsive mt-2">
+                <table class="table table-bordered mg-b-0">
+                    <thead>
                         <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $item->employee->name }}</td>
-                            <td>{{ $item->start_date }} - {{ $item->end_date }}</td>
-                            <td>{{ $item->type }}</td>
-                            <td>{{ $item->approver ? $item->approver->name : '-' }}</td>
-                            <td>{{ $item->status }}</td>
-                            <td>
-                                <div class="d-flex">
-                                    <a href="{{ route('leave.leave.show', $item->id) }}"
-                                        class="btn btn-primary btn-icon mr-1"><i class="typcn typcn-eye"></i></a>
-                                </div>
-                            </td>
+                            <th>No</th>
+                            <th>Employee</th>
+                            <th>Date</th>
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th>Status</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($data as $item)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th>{{$item->employee->name}}</th>
+                                <td>{{ $item->date }}</td>
+                                <td>{{ $item->check_in }}</td>
+                                <td>{{ $item->check_out }}</td>
+                                <td>{{ $item->status }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-
 </div>

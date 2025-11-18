@@ -43,7 +43,7 @@ class GenerateDailyAttendanceAlpha extends Command
 
         // Kalau libur nasional atau bukan hari kerja, skip aja
         if ($isHoliday || !$workSchedule || !$workSchedule->is_working_day) {
-            $this->info('🛑 Today is a holiday or non-working day. Skipping alpha generation.');
+            $this->info('Today is a holiday or non-working day. Skipping alpha generation.');
             return;
         }
 
@@ -83,9 +83,9 @@ class GenerateDailyAttendanceAlpha extends Command
                 ]
             );
 
-            $this->info("⚠️ Alpha recorded for employee #{$emp->id}");
+            $this->info("Alpha recorded for employee #{$emp->id}");
         }
 
-        $this->info('✅ Alpha generation completed successfully!');
+        $this->info('Alpha generation completed successfully!');
     }
 }

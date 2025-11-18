@@ -30,7 +30,7 @@ class GeneratePayrolls extends Command
      */
     public function handle()
     {
-        // 🔥 Periode tanggal 5 ke 5
+        // Periode tanggal 5 ke 5
         $now = Carbon::now();
         $start = $now->copy()->subMonth()->day(5)->startOfDay();
         $end = $now->copy()->day(4)->endOfDay();
@@ -49,14 +49,14 @@ class GeneratePayrolls extends Command
             $lateCount = $attendances->where('status', 'telat')->count();
             $overtimeHours = $attendances->sum('overtime_hours');
 
-            // 🔹 Perhitungan
+            // Perhitungan
             $alphaDeduction = $alphaCount * ($basic * 0.05);
             $lateDeduction = floor($lateCount / 3) * ($basic * 0.05);
             $allowance = $attendances->where('status', 'hadir')->count() * 100000;
             $overtimePay = $overtimeHours * ($basic * 0.02);
             $net = $basic + $overtimePay + $allowance - ($alphaDeduction + $lateDeduction);
 
-            // 🔹 Buat / update payroll utama
+            // Buat / update payroll utama
             $payroll = Payroll::updateOrCreate(
                 [
                     'employee_id' => $employee->id,
@@ -67,10 +67,10 @@ class GeneratePayrolls extends Command
                 ],
             );
 
-            // 🔹 Hapus item lama biar ga double
+            // Hapus item lama biar ga double
             $payroll->items()->delete();
 
-            // 🔹 Insert item baru
+            // Insert item baru
             $items = [
                 [
                     'type' => 'allowance',
@@ -113,9 +113,9 @@ class GeneratePayrolls extends Command
                 ]);
             }
 
-            $this->info("✅ Payroll generated for {$employee->name}");
+            $this->info("Payroll generated for {$employee->name}");
         }
 
-        $this->info('💰 Payroll generation completed successfully!');
+        $this->info('Payroll generation completed successfully!');
     }
 }

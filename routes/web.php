@@ -8,10 +8,12 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorkSceduleController;
 use App\Livewire\AttendanceLivewire;
 use App\Livewire\AttendanceLogLivewire;
+use App\Livewire\AttendanceReportsLivewire;
 use App\Livewire\DailyAttendanceLivewire;
 use App\Livewire\DashboardLivewire;
 use App\Livewire\DepartmentLivewire;
 use App\Livewire\EmployeeLivewire;
+use App\Livewire\LeaveReportsLivewire;
 use App\Livewire\OvertimeReportsLivewire;
 use App\Livewire\PayrollManagementLivewire;
 use App\Livewire\PayrollReportsLivewire;
@@ -65,9 +67,10 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::prefix('report')->name('report.')->group(function () {
-        Route::get('/leave_report', [LeaveController::class, 'leave_reports'])->name('leave_report');
+        Route::get('/leave_report', LeaveReportsLivewire::class)->name('leave_report');
         Route::get('/overtime_report', OvertimeReportsLivewire::class)->name('overtime_report');
         Route::get('/payroll_report', PayrollReportsLivewire::class)->name('payroll_report');
+        Route::get('/attendance_report', AttendanceReportsLivewire::class)->name('attendance_report');
     });
 
     Route::prefix('attendance')->name('attendance.')->group(function () {
