@@ -65,7 +65,9 @@
                  <li class="nav-item {{ request()->is('report*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-document-text"></i> Reports</a>
                      <nav class="az-menu-sub">
-                         <a href="{{route('report.attendance_report')}}" class="nav-link {{Route::is('report.attendance_report') ? 'active' : ''}}">Attendance Reports</a>
+                         <a href="{{ route('report.attendance_report') }}"
+                             class="nav-link {{ Route::is('report.attendance_report') ? 'active' : '' }}">Attendance
+                             Reports</a>
                          <a href="{{ route('report.payroll_report') }}"
                              class="nav-link {{ Route::is('report.payroll_report') ? 'active' : '' }}">Payrolls
                              Reports</a>

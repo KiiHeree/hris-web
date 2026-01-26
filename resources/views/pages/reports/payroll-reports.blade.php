@@ -18,6 +18,13 @@
             </div>
         @endif
 
+        @if ($is_exporting)
+            <div wire:poll.2s="export_status" class="alert alert-success show fade" id="alertBox"
+                style="position: absolute; top: 80px; right: 10px;">
+                <p>Menyiapkan file export...</p>
+            </div>
+        @endif
+
         <div class="az-content-label mg-b-5">Payroll Reports</div>
         <p class="mg-b-5">This menu is used to manage list of Payroll Reports.</p>
         <form wire:submit.prevent="filter" class="mt-2">
@@ -40,6 +47,8 @@
             </div>
             <button type="submit" class="btn btn-outline-success">Filter</button>
         </form>
+        <button class="btn btn-outline-primary mt-2" wire:click="export_reports()"
+            {{ $btn_report ? '' : 'disabled' }}>Export</button>
 
         <div class="table-responsive mt-2">
             <table class="table table-bordered mg-b-0">
@@ -84,3 +93,18 @@
         </div>
     </div>
 </div>
+
+@section('script')
+    <script>
+        // var alert = document.getElementById('alertBox')
+        // setTimeout(() => {
+        //     alert.classList.remove('show', 'fade')
+        // }, 3000);
+        // alert(alert)
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('export_status', (data) => {
+                window.location.href = data.fileUrl
+            })
+        })
+    </script>
+@endsection
