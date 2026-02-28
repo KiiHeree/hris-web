@@ -65,17 +65,6 @@
     <script src="/assets/js/dashboard.sampledata.js"></script>
     <script src="/assets/js/jquery.cookie.js" type="text/javascript"></script>
     <script>
-        // $(document).ready(function() {
-        //     $('#table').DataTable();
-        // })
-        setTimeout(() => {
-            const alertBox = document.getElementById('alertBox');
-            if (alertBox) {
-                const bsAlert = new bootstrap.Alert(alertBox);
-                bsAlert.close(); // auto close
-            }
-        }, 3000);
-
         document.addEventListener('livewire:init', () => {
             Livewire.on('reinitComponents', () => {
 
@@ -86,10 +75,7 @@
                         bsAlert.close(); // auto close
                     }
 
-                }, 1000);
-
-
-
+                }, 5000);
 
                 // // inisialisasi ulang setelah update DOM
                 // setTimeout(() => {

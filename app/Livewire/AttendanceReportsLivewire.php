@@ -32,6 +32,9 @@ class AttendanceReportsLivewire extends Component
         } else {
             session()->flash('error', 'Attendance data not found.');
         }
+
+        $this->dispatch('reinitComponents');
+
     }
 
     public function render()

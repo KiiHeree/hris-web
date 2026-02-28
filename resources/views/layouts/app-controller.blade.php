@@ -76,7 +76,6 @@
 
         document.addEventListener('livewire:init', () => {
             Livewire.on('reinitComponents', () => {
-
                 setTimeout(() => {
                     const alertBox = document.getElementById('alertBox');
                     if (alertBox) {

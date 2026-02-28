@@ -19,10 +19,10 @@ class GenerateDailyAttendanceFromLeaves extends Command
         $today = Carbon::today();
         $dayOfWeek = strtolower($today->isoFormat('dddd')); // senin, selasa, dst
 
-        // 🔹 Cek libur nasional
+        //  Cek libur nasional
         $isHoliday =  Holiday::whereDate('date', $today)->exists();
 
-        // 🔹 Cek jadwal kerja hari ini
+        //  Cek jadwal kerja hari ini
         $workSchedule = WorkScedule::where('day_of_week', $dayOfWeek)->first();
 
         // Kalau hari ini libur nasional atau bukan hari kerja, skip
@@ -31,7 +31,7 @@ class GenerateDailyAttendanceFromLeaves extends Command
             return;
         }
 
-        // 🔹 Ambil semua cuti yang statusnya approved dan aktif hari ini
+        // Ambil semua cuti yang statusnya approved dan aktif hari ini
         $leaves = Cuti::where('status', 'approved')
             ->whereDate('start_date', '<=', $today)
             ->whereDate('end_date', '>=', $today)

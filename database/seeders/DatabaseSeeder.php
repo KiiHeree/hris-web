@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         );
         $hrd->assignRole('hrd');
 
-        // ====== Employee: Ella ======
+        // ====== Employee: Intan ======
         $staff = User::firstOrCreate(
             ['email' => 'intan@example.com'],
             ['name' => 'Intan', 'password' => bcrypt('password')]

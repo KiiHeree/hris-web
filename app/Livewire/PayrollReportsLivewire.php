@@ -44,6 +44,8 @@ class PayrollReportsLivewire extends Component
         } else {
             session()->flash('error', 'No payroll data found');
         }
+
+        $this->dispatch('reinitComponents');
     }
 
     public function export_reports()
@@ -75,8 +77,10 @@ class PayrollReportsLivewire extends Component
             }
             session()->flash('success', 'export payroll selesai');
         } elseif (Cache::get('export_false')) {
-            session()->flash('success', 'export payroll gagal');
+            session()->flash('error', 'export payroll gagal');
         }
+
+        $this->dispatch('reinitComponents');
     }
 
 
@@ -94,6 +98,8 @@ class PayrollReportsLivewire extends Component
         } else {
             session()->flash('error', 'Failed to updated the data. Please try again');
         }
+
+        $this->dispatch('reinitComponents');
     }
 
     public function render()

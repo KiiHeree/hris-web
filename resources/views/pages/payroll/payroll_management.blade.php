@@ -16,8 +16,8 @@
             </div>
         @endif
 
-        <div class="az-content-label mg-b-5">Overtime Reports</div>
-        <p class="mg-b-5">This menu is used to manage list of Overtime Reports.</p>
+        <div class="az-content-label mg-b-5">Payroll Management</div>
+        <p class="mg-b-5">This menu is used to manage list of Payroll Management.</p>
 
         <div class="table-responsive">
             <table class="table table-bordered mg-b-0">
