@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payroll_items', function (Blueprint $table) {
+        Schema::create('employment_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('payroll_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('salary_component_id')->nullable()->constrained();
-            $table->string('description');
-            $table->decimal('amount', 12, 2);
+            $table->string('name');
+            $table->enum('type',['month','year']);
+            $table->integer('duration');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payroll_items');
+        Schema::dropIfExists('employment_statuses');
     }
 };

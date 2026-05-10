@@ -28,10 +28,10 @@ class AttendanceLivewire extends Component
         $id = Auth::id();
         $attendance = Attendance::where('employee_id', $id)->where('date', $today)->first();
 
-        // 🔹 Cek libur nasional
+        // Cek libur nasional
         $isHoliday =  Holiday::whereDate('date', $today)->exists();
 
-        // 🔹 Cek jadwal kerja hari ini
+        // Cek jadwal kerja hari ini
         $workSchedule = WorkScedule::where('day_of_week', $dayOfWeek)->first();
 
         // Kalau hari ini libur nasional atau bukan hari kerja, skip
@@ -50,18 +50,22 @@ class AttendanceLivewire extends Component
 
     public function AttendanceProces($status_attendance)
     {
+        Carbon::setLocale('id');
         $today = Carbon::now();
+        $formatDay = strtolower($today->translatedFormat('l'));
+        $workSchedule = WorkScedule::where('day_of_week',$formatDay)->first(); // ambil data jadwal kerja
         $hours = Carbon::now()->format('H:i:s');
-        $check_out_time = Carbon::parse('16:00');
         $attendance = '';
-        $diffInHours = $check_out_time->diffInHours($hours, false);
+        $check_out_time = Carbon::parse($workSchedule['end_time']); // jam pulang
+        $diffInHours = $check_out_time->diffInHours($hours, false); // hitung jam lembur
+        $start_time = Carbon::now()->setTimeFromTimeString($workSchedule['start_time']); // jam masuk
 
         if ($status_attendance == 'not_checked_in') {
             $attendance = Attendance::create([
                 'employee_id' => Auth::id(),
                 'date' => $today,
                 'check_in' => $hours,
-                'status' => now()->gt(now()->setTime(8, 0)) ? 'telat' : 'hadir',
+                'status' => now()->gt($start_time) ? 'telat' : 'hadir',
             ]);
         } elseif ($status_attendance == 'checked_in') {
             $attendance = Attendance::where('employee_id', Auth::id())->update([

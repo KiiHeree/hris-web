@@ -62,7 +62,7 @@ class GeneratePayrolls extends Command
                     'employee_id' => $employee->id,
                     'period' => now()->subMonth()->format('Y-m'),
                     'salary_basic' => $basic,
-                    'net' => $net,
+                    'net_salary' => $net,
                     'status' => 'draft',
                 ],
             );

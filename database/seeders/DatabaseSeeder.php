@@ -49,22 +49,53 @@ class DatabaseSeeder extends Seeder
         );
         $staff->assignRole('employee');
 
-        Employees::firstOrCreate(
-            ['user_id' => $staff->id],
-            [
-                'nik' => 'EMP001',
-                'join_date' => now(),
-                'department_id' => $dept->id,
-                'position_id' => $pos->id,
-                'salary_basic' => 5000000,
-                'bank_account' => '1234567890',
-            ]
-        );
+        $users = User::all();
+        foreach($users as $key => $user) {
+            Employees::firstOrCreate(
+                ['user_id' => $user->id],
+                [
+                    // identity
+                    'employee_code' => 'EMP00'.$key+1,
+                    'nik' => 'EMP00'.$key+1,
+
+                    // relations
+                    'department_id' => $dept->id ?? null,
+                    'position_id' => $pos->id ?? null,
+                    'employment_status_id' => 1,
+                    'manager_id' => null,
+
+                    // basic info
+                    'full_name' => $user->name ?? 'Staff Default',
+                    'gender' => 'L', // atau 'P'
+                    'birth_date' => '2000-01-01',
+                    'birth_place' => 'Unknown',
+
+                    // contact
+                    'address' => 'Alamat default',
+                    'telp' => '08123456789',
+                    'email' => $user->email ?? 'staff@mail.com',
+
+                    // employment
+                    'join_date' => now(),
+                    'resign_date' => null,
+
+                    // finance
+                    'salary_basic' => 5000000,
+                    'bank_name' => 'BCA',
+                    'bank_account' => '1234567890',
+                    'npwp' => null,
+
+                    // misc
+                    'notes' => null,
+                ]
+            );
+        }
 
         $this->call([
             WorkScheduleSeeder::class,
             HolidaySeeder::class,
             // AttendanceSeeder::class,
+            // EmploymentStatusSeeder::class,
         ]);
     }
 }

@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payrolls', function (Blueprint $table) {
+        Schema::create('employee_documents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained()->cascadeOnDelete();
-            $table->string('period'); // contoh: 2025-09
-            $table->decimal('salary_basic', 12, 2);
-            $table->decimal('total_allowance', 12, 2)->default(0);
-            $table->decimal('total_deduction', 12, 2)->default(0);
-            $table->decimal('net_salary', 12, 2);
-            $table->enum('status', ['draft', 'paid'])->default('draft');
+
+            $table->string('type');
+            $table->string('file_path');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payrolls');
+        Schema::dropIfExists('employee_documents');
     }
 };

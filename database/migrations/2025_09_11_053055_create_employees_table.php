@@ -13,14 +13,43 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('nik')->unique(); // Nomor Induk Karyawan
-            $table->date('join_date');
+                    // relation
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('department_id')->nullable()->constrained();
             $table->foreignId('position_id')->nullable()->constrained();
+            $table->foreignId('employment_status_id')->constrained();
+            $table->foreignId('manager_id')->nullable()->constrained('employees');
+
+            // identity
+            $table->string('employee_code')->unique();
+            $table->string('nik')->unique();
+
+            // basic info
+            $table->string('full_name');
+            $table->enum('gender', ['L', 'P']);
+            $table->date('birth_date');
+            $table->string('birth_place')->nullable();
+
+            // contact
+            $table->text('address')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('email')->nullable();
+
+            // employment
+            $table->date('join_date');
+            $table->date('resign_date')->nullable();
+
+            // finance
             $table->decimal('salary_basic', 12, 2)->default(0);
+            $table->string('bank_name')->nullable();
             $table->string('bank_account')->nullable();
+            $table->string('npwp')->nullable();
+
+            // misc
+            $table->text('notes')->nullable();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

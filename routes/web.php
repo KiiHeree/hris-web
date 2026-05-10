@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\LeaveController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WorkSceduleController;
 use App\Livewire\AttendanceLivewire;
@@ -11,8 +9,10 @@ use App\Livewire\AttendanceLogLivewire;
 use App\Livewire\AttendanceReportsLivewire;
 use App\Livewire\DailyAttendanceLivewire;
 use App\Livewire\DashboardLivewire;
+use App\Livewire\DeductionAndAllowanceLivewire;
 use App\Livewire\DepartmentLivewire;
-use App\Livewire\EmployeeLivewire;
+use App\Livewire\EmployeeStatusLivewire;
+use App\Livewire\HolidayLivewire;
 use App\Livewire\LeaveReportsLivewire;
 use App\Livewire\OvertimeReportsLivewire;
 use App\Livewire\PayrollManagementLivewire;
@@ -22,7 +22,6 @@ use App\Livewire\PermissionLivewire;
 use App\Livewire\PositionLivewire;
 use App\Livewire\RequestOvertimeLivewire;
 use App\Livewire\RoleLivewire;
-use App\Livewire\RolePermissionLivewire;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,13 +49,14 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/department', DepartmentLivewire::class)->name('department');
         Route::get('/position', PositionLivewire::class)->name('position');
+        Route::get('/employee_status', EmployeeStatusLivewire::class)->name('employee_status');
     });
     Route::prefix('setting')->name('setting.')->group(function () {
         Route::get('/role', RoleLivewire::class)->name('role');
         Route::get('/permission', PermissionLivewire::class)->name('permission');
         Route::resource('users', UsersController::class);
         Route::resource('work_schedule', WorkSceduleController::class);
-        Route::resource('holiday', HolidayController::class);
+        Route::get('holiday', HolidayLivewire::class)->name('holiday');
     });
 
     Route::prefix('leave')->name('leave.')->group(function () {
@@ -82,6 +82,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('payroll')->name('payroll.')->group(function () {
         Route::get('/payroll_management',PayrollManagementLivewire::class)->name('payroll_management');
         Route::get('/show_payroll/{id}',PayrollShowLivewire::class)->name('show_payroll');
+        Route::get('/deduction_allowance',DeductionAndAllowanceLivewire::class)->name('deduction_allowance');
     });
 
     // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

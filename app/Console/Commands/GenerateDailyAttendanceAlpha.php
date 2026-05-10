@@ -41,14 +41,13 @@ class GenerateDailyAttendanceAlpha extends Command
         // Ambil jadwal kerja hari ini
         $workSchedule = WorkScedule::where('day_of_week', $dayOfWeek)->first();
 
-        // Kalau libur nasional atau bukan hari kerja, skip aja
+        // Kalau libur nasional atau bukan hari kerja , SKIP
         if ($isHoliday || !$workSchedule || !$workSchedule->is_working_day) {
             $this->info('Today is a holiday or non-working day. Skipping alpha generation.');
             return;
         }
 
-        // Ambil semua employee yang gak punya record attendance hari ini
-        // dan gak lagi cuti/izin/sakit (approved)
+        // Ambil semua employee yang gak punya record attendance hari ini dan gak lagi cuti/izin/sakit (approved)
         $employees = User::role('employee')
             ->with(['attendance' => function ($query) use ($today) {
                 $query->whereDate('date', $today);

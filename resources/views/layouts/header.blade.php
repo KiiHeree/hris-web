@@ -1,12 +1,12 @@
  <div class="az-header">
      <div class="container">
          <div class="az-header-left">
-             <a href="index.html" class="az-logo"><span></span> azia</a>
+             <a href="/" class="az-logo"><span></span> HRIS</a>
              <a href="" id="azMenuShow" class="az-header-menu-icon d-lg-none"><span></span></a>
          </div><!-- az-header-left -->
          <div class="az-header-menu">
              <div class="az-header-menu-header">
-                 <a href="index.html" class="az-logo"><span></span> azia</a>
+                 <a href="/" class="az-logo"><span></span> HRIS</a>
                  <a href="" class="close">&times;</a>
              </div><!-- az-header-menu-header -->
              <ul class="nav">
@@ -25,6 +25,9 @@
                          <a href="{{ route('employee.position') }}"
                              class="nav-link 
                              {{ Route::is('employee.position') ? 'active' : '' }}">Position</a>
+                         <a href="{{ route('employee.employee_status') }}"
+                             class="nav-link 
+                             {{ Route::is('employee.employee_status') ? 'active' : '' }}">Employee Status</a>
                      </nav>
                  </li>
                  <li class="nav-item {{ request()->is('attendance*') ? 'active' : '' }}">
@@ -44,7 +47,8 @@
                  <li class="nav-item {{ request()->is('payroll*') ? 'active' : '' }}">
                      <a href="" class="nav-link with-sub"><i class="typcn typcn-credit-card"></i> Payrolls</a>
                      <nav class="az-menu-sub">
-                         <a href="/" class="nav-link">Deduction & Allowance</a>
+                         <a href="{{ route('payroll.deduction_allowance') }}" 
+                             class="nav-link {{ Route::is('payroll.deduction_allowance') ? 'active' : '' }}">Deduction & Allowance</a>
                          <a href="{{ route('payroll.payroll_management') }}"
                              class="nav-link {{ Route::is('payroll.payroll_management') ? 'active' : '' }}">Payroll
                              Management</a>
@@ -90,8 +94,8 @@
                          <a href="{{ route('setting.work_schedule.index') }}"
                              class="nav-link {{ Route::is('setting.work_schedule.index') ? 'active' : '' }}">Work
                              Schedule</a>
-                         <a href="{{ route('setting.holiday.index') }}"
-                             class="nav-link {{ Route::is('setting.holiday.index') ? 'active' : '' }}">Holiday</a>
+                         <a href="{{ route('setting.holiday') }}"
+                             class="nav-link {{ Route::is('setting.holiday') ? 'active' : '' }}">Holiday</a>
                      </nav>
                  </li>
 
@@ -108,7 +112,7 @@
                      <p class="az-notification-text">You have 2 unread notification</p>
                      <div class="az-notification-list">
                          <div class="media new">
-                             <div class="az-img-user"><img src="/assets/img/faces/face2.jpg" alt=""></div>
+                             <div class="az-img-user"><img src="/assets/img/faces/ella.jfif" alt=""></div>
                              <div class="media-body">
                                  <p>Congratulate <strong>Socrates Itumay</strong> for work anniversaries</p>
                                  <span>Mar 15 12:32pm</span>
@@ -119,14 +123,14 @@
                  </div><!-- dropdown-menu -->
              </div><!-- az-header-notification -->
              <div class="dropdown az-profile-menu">
-                 <a href="" class="az-img-user"><img src="/assets/img/faces/face1.jpg" alt=""></a>
+                 <a href="" class="az-img-user"><img src="/assets/img/faces/ella.jfif" alt=""></a>
                  <div class="dropdown-menu">
                      <div class="az-dropdown-header d-sm-none">
                          <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
                      </div>
                      <div class="az-header-profile">
                          <div class="az-img-user">
-                             <img src="/assets/img/faces/face1.jpg" alt="">
+                             <img src="/assets/img/faces/ella.jfif" alt="">
                          </div><!-- az-img-user -->
                          <h6>{{ Auth::user()->name }}</h6>
                          <span>{{ Auth::user()->getRoleNames()->first() }}</span>

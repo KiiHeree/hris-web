@@ -62,6 +62,7 @@
     <script src="/assets/js/chart.flot.sampledata.js"></script>
     <script src="/assets/js/dashboard.sampledata.js"></script>
     <script src="/assets/js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
         // $(document).ready(function() {
         //     $('#table').DataTable();
@@ -95,6 +96,7 @@
             });
         });
     </script>
+    @yield('script')
 </body>
 
 </html>

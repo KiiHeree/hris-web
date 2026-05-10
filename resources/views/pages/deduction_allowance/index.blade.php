@@ -1,9 +1,9 @@
-@section('title', 'Holiday')
+@section('title', 'Deduction & Allowance')
 <div>
     <div class="az-content-body pd-lg-l-40 d-flex flex-column">
         <div class="az-content-breadcrumb">
-            <span>Employee</span>
-            <span>Holiday</span>
+            <span>Payrolls</span>
+            <span>Deduction & Allowance</span>
         </div>
         @if (Session::has('success'))
             <div class="alert alert-success" id="alertBox" style="position: absolute; top: 80px; right: 10px;"
@@ -17,8 +17,8 @@
                 {{ Session::get('error') }}
             </div>
         @endif
-        <div class="az-content-label mg-b-5">Holiday</div>
-        <p class="mg-b-5">This menu is used to manage list of Holiday in the company.</p>
+        <div class="az-content-label mg-b-5">Deduction & Allowance</div>
+        <p class="mg-b-5">This menu is used to manage list of Deduction & Allowance in the company.</p>
         <button class="btn btn-primary btn-with-icon my-3 col-sm-4 col-md-2" wire:click="showModal('create')"><i
                 class="typcn typcn-edit"></i> Create</button>
         <div class="table-responsive">
@@ -26,8 +26,10 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Date</th>
-                        <th>Description</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Calculation</th>
+                        <th>Value</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -35,8 +37,10 @@
                     @foreach ($data as $item)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ \Carbon\Carbon::parse($item->date)->format('d F Y') }}</td>
-                            <td>{{ $item->description }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->type }}</td>
+                            <td>{{ $item->calculation_type }}</td>
+                            <td>{{ $item->calculation_type === 'percentage' ? '' : 'Rp.'}}{{ number_format($item->default_value) }}</td>
                             <td>
                                 <div class="d-flex">
                                     <button class="btn btn-warning btn-icon mr-1"
@@ -58,7 +62,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-capitalize" id="exampleModalLongTitle">{{ $mode }} Holiday
+                    <h5 class="modal-title text-capitalize" id="exampleModalLongTitle">{{ $mode }} Deduction & Allowance
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
                         wire:click="closeModal">
@@ -73,14 +77,32 @@
 
                 <div class="modal-body">
                     <div class="form-group has-success">
-                        <label for="">Date</label>
-                        <input class="form-control" placeholder="Input Date" wire:model="date" required="date"
-                            type="date">
+                        <label for="">Name</label>
+                        <input class="form-control" placeholder="Input Name" wire:model="name" required="name"
+                            type="text">
+                    </div>
+                    <div class="form-group has-success">
+                        <label for="">Type</label>
+                        <select class="form-control" wire:model="type">
+                            <option value="">== Choose Type ==</option>
+                            <option value="allowance">Allowance</option>
+                            <option value="deduction">Deduction</option>
+                            <option value="overtime">Overtime</option>
+                        </select>
+                    </div>
+                    <div class="form-group has-success">
+                        <label for="">Calculation</label>
+                        <select class="form-control" wire:model.live="calculation_type">
+                            <option value="">== Choose Calculation ==</option>
+                            <option value="fixed">Fixed</option>
+                            <option value="percentage">Percentage</option>
+                        </select>
                     </div>
                     <div class="form-group has-success">
                        <div class="form-group has-success">
-                            <label for="">Descripton</label>
-                            <textarea class="form-control" placeholder="Input Description" wire:model="description" required="description"></textarea>
+                            <label for="">Default Value</label>
+                            <input class="form-control" placeholder="Input Value" wire:model.live="default_value" required="default_value"
+                                type="number">
                         </div>
                     </div>
                 </div>

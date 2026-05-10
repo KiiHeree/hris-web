@@ -17,8 +17,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $data = User::role('employee')
-            ->get();
+        // $data = User::role('employee')->get();
+        $data = User::all();
 
         return view('pages.employees.employee', compact('data'));
     }
