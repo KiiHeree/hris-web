@@ -17,7 +17,29 @@ class Employees extends Model
         'position_id',
         'salary_basic',
         'bank_account',
+        'bank_name',
+        'birth_place',
+        'birth_date',
+        'full_name',
+        'telp',
+        'manager_id',
+        'employment_status_id',
+        'employee_code',
+        'notes',
+        'address',
+        'gender',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $prefix = strtoupper(substr($model->full_name, 0, 3));
+            $count = static::where('employee_code', 'like', $prefix . '%')->count() + 1;
+            $model->employee_code = $prefix . str_pad($count, 4, '0', STR_PAD_LEFT);
+        });
+    }  
 
     public function user()
     {
