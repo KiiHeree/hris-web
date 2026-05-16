@@ -36,10 +36,10 @@
                     @foreach ($data as $item)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $item->employee->name }}</td>
+                            <td>{{ $item->employee->full_name }}</td>
                             <td>{{ $item->period }}</td>
                             <td>{{ number_format($item->salary_basic) }}</td>
-                            <td>{{ number_format($item->net) }}</td>
+                            <td>{{ number_format($item->net_salary) }}</td>
                             <td>{{ $item->status }}</td>
                             <td>
                                 <div class="d-flex">

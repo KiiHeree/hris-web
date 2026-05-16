@@ -36,7 +36,7 @@
                     @foreach ($data as $item)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $item->employee->name }}</td>
+                            <td>{{ $item->employee->full_name }}</td>
                             <td>{{ $item->date }}</td>
                             <td>{{ $item->status }}</td>
                             <td>{{ $item->total_hours }}</td>

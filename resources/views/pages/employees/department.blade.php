@@ -72,7 +72,7 @@
                 <div class="modal-body">
                     <div class="form-group has-success">
                         <label for="exampleInputEmail1">Name</label>
-                        <input class="form-control" placeholder="Input Name" wire:model="name" required="name"
+                        <input class="form-control" placeholder="Input Name" wire:model="name" required
                             type="text">
                     </div>
                 </div>

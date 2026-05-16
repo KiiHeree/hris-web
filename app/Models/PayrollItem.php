@@ -11,14 +11,19 @@ class PayrollItem extends Model
 
     protected $fillable = [
         'payroll_id',
-        'type',
+        'salary_component_id',
         'description',
         'amount'
     ];
 
 
-     public function payroll()
+    public function payroll()
     {
         return $this->belongsTo(Payroll::class);
+    }
+
+    public function salaryComponent()
+    {
+        return $this->belongsTo(SalaryComponent::class,'salary_component_id');
     }
 }

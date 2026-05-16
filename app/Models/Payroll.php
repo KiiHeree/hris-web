@@ -13,7 +13,9 @@ class Payroll extends Model
         'employee_id',
         'period',
         'salary_basic',
-        'net',
+        'total_allowance',
+        'total_deduction',
+        'net_salary',
         'status'
     ];
 
@@ -23,7 +25,7 @@ class Payroll extends Model
     }
 
     public function employee() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Employees::class,'employee_id','id');
     }
 
 }

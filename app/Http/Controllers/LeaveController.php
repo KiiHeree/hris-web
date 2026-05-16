@@ -13,7 +13,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $data = Cuti::where('employee_id', Auth::id())->get();
+        $data = Cuti::where('employee_id', Auth::user()->employee->id)->get();
 
         return view('pages.leave.leave-history', compact('data'));
     }
@@ -29,7 +29,7 @@ class LeaveController extends Controller
     {
         $status_update = Cuti::where('status', '=', 'pending')->where('id', $id)->update([
             'status' => $request->status,
-            'approver_id' => Auth::id()
+            'approver_id' => Auth::user()->employee->id
         ]);
 
         if ($status_update) {
@@ -63,7 +63,7 @@ class LeaveController extends Controller
         ]);
 
         $store_leave = Cuti::create([
-            'employee_id' => Auth::id(),
+            'employee_id' => Auth::user()->employee->id,
             'deskripsi' => $request->deskripsi,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,

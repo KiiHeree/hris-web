@@ -17,22 +17,18 @@
             <h2 class="az-dashboard-title">Hi, welcome back!</h2>
             <p class="az-dashboard-text">Your web analytics dashboard template.</p>
         </div>
-        @if (Auth::user()->getRoleNames()->first() == 'employee')
-            <div class="az-content-header-right">
-                <button class="btn btn-purple" type="button" {{ $status == 'done' || $status == 'libur' ? 'disabled' : '' }}
-                    wire:click="AttendanceProces('{{ $status }}')">
-                    @if ($status == 'done')
-                        Done
-                    @elseif ($status == 'not_checked_in')
-                        Check In
-                    @elseif ($status == 'checked_in')
-                        Check Out
-                    @elseif ($status == 'libur')
-                        Libur
-                    @endif
-                </button>
-            </div>
-        @endif
+        <div class="az-content-header-right">
+            <button id="btn-absen" class="btn btn-purple" type="button" 
+                {{ $status == 'done' || $status == 'libur' ? 'disabled' : '' }}
+                onclick="openFaceModal('{{ Auth::user()->employee->id }}', '{{ $status }}')">
+
+                @if ($status == 'done') Done
+                @elseif ($status == 'not_checked_in') Check In
+                @elseif ($status == 'checked_in') Check Out
+                @elseif ($status == 'libur') Libur
+                @endif
+            </button>
+        </div>
     </div>
     <div class="az-dashboard-nav">
         <nav class="nav">
@@ -133,4 +129,142 @@
             </div><!-- row -->
         </div><!--col -->
     </div><!-- row -->
+
+    <div id="faceModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:white; padding:20px; border-radius:15px; text-align:center; width:400px; position:relative;">
+            <h4 class="mb-3">Verifikasi Wajah</h4>
+            
+            <div style="position:relative; width:100%; height:300px; background:#000; border-radius:10px; overflow:hidden;">
+                <video id="webcam" autoplay playsinline style="width:100%; height:100%; object-fit:cover; transform: scaleX(-1);"></video>
+                <div id="scanner-line" style="position:absolute; top:0; left:0; width:100%; height:2px; background:cyan; box-shadow:0 0 10px cyan; animation: scan 2s infinite;"></div>
+            </div>
+
+            <div id="face-status" class="mt-3 fw-bold text-muted">Mencari wajah...</div>
+            
+            <button class="btn btn-secondary mt-3 w-100" onclick="closeFaceModal()">Batal</button>
+        </div>
+    </div>
+
+    <style>
+        @keyframes scan {
+            0% { top: 0; }
+            50% { top: 100%; }
+            100% { top: 0; }
+        }
+    </style>
 </div>
+
+@section('script')
+    <script>
+        let videoStream = null;
+        let isProcessing = false;
+        let scanInterval = null;
+
+        // Auto-hide Alert
+        setTimeout(() => {
+            const alert = document.getElementById('alertBox');
+            if(alert) alert.style.display = 'none';
+        }, 4000);
+
+        async function openFaceModal(targetId, currentStatus) {
+            const modal = document.getElementById('faceModal');
+            const video = document.getElementById('webcam');
+            const statusText = document.getElementById('face-status');
+            
+            modal.style.display = 'flex';
+            isProcessing = true;
+            statusText.innerHTML = '<span class="text-muted">Mengaktifkan Kamera...</span>';
+
+            try {
+                videoStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { width: 640, height: 480, facingMode: "user" } 
+                });
+                video.srcObject = videoStream;
+                
+                statusText.innerHTML = '<div class="spinner-grow spinner-grow-sm text-purple"></div> Scanning...';
+
+                scanInterval = setInterval(async () => {
+                    if (!isProcessing) return;
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext('2d').drawImage(video, 0, 0);
+                    
+                    canvas.toBlob(async (blob) => {
+                        const formData = new FormData();
+                        formData.append('file', blob, 'face.jpg');
+
+                        try {
+                            const response = await fetch('http://127.0.0.1:8001/api/recognize', {
+                                method: 'POST',
+                                body: formData
+                            });
+                            
+                            if (!response.ok) throw new Error("Server Error");
+                            
+                            const data = await response.json();
+
+                            if (data.employee_id == targetId) {
+                                
+                                if (data.success) {
+                                    // WAJAH COCOK + DATA MASUK DB
+                                    statusText.innerHTML = `<span class="text-success"><i class="fas fa-check-circle"></i> ${data.message}</span>`;
+                                    isProcessing = false;
+                                    clearInterval(scanInterval);
+                                    
+                                    @this.call('$refresh'); // Refresh status tombol
+                                    setTimeout(closeFaceModal, 1500);
+                                } else {
+                                    statusText.innerHTML = `<span class="text-warning"><i class="fas fa-exclamation-triangle"></i> ${data.message}</span>`;
+                                }
+                                @this.call('$refresh');
+
+                                setTimeout(closeFaceModal, 1500);
+                            } else {
+                                statusText.innerHTML = `<span class="text-danger">${data.message || 'Wajah tidak dikenal'}</span>`;
+                            }
+                        } catch (e) {
+                            console.error("Detail Error:", e);
+                            statusText.innerHTML = '<span class="text-warning">Gagal terhubung ke AI Service</span>';
+                        }
+                    }, 'image/jpeg', 0.7);
+
+                }, 2000);
+
+            } catch (err) {
+                alert("Kamera tidak bisa diakses. Pastikan izin kamera diberikan.");
+                closeFaceModal();
+            }
+        }
+
+        function closeFaceModal() {
+            isProcessing = false;
+    
+            // 1. Hentikan interval scanning
+            if (scanInterval) {
+                clearInterval(scanInterval);
+                scanInterval = null;
+            }
+
+            // 2. MATIIN HARDWARE KAMERA (Lampu Kamera)
+            if (videoStream) {
+                const tracks = videoStream.getTracks();
+                tracks.forEach(track => {
+                    track.stop(); // Ini yang bikin lampu kamera mati
+                    console.log("Track stopped:", track.kind);
+                });
+                videoStream = null;
+            }
+
+            // 3. Sembunyikan Modal
+            document.getElementById('faceModal').style.display = 'none';
+            
+            // 4. Bersihkan srcObject video agar memori lega
+            const video = document.getElementById('webcam');
+            if (video) {
+                video.srcObject = null;
+            }
+        }
+    </script>
+@endsection

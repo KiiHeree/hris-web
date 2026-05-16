@@ -27,7 +27,7 @@ class RequestOvertimeLivewire extends Component
 
         $overtime->update([
             'status' => $status,
-            'approver_id' => Auth::id()
+            'approver_id' => Auth::user()->employee->id
         ]);
 
         if ($status == 'approved' && $overtime) {
@@ -37,6 +37,7 @@ class RequestOvertimeLivewire extends Component
             ]);
             session()->flash('success', 'The data has been updated successfully');
             $this->get_data();
+            $this->dispatch('reinitComponents');
         } else {
             session()->flash('error', 'Failed to updated the data. Please try again');
         }

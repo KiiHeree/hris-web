@@ -56,5 +56,4 @@ class Employees extends Model
         return $this->belongsTo(Position::class, 'position_id');
     }
 
-
 }

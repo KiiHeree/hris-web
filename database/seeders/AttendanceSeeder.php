@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Attendance;
+use App\Models\Employees;
 use App\Models\Holiday;
 use App\Models\Overtime;
 use App\Models\User;
@@ -19,7 +20,7 @@ class AttendanceSeeder extends Seeder
     public function run(): void
     {
         // Ambil semua user dengan role employee
-        $employees = User::role('employee')->get();
+        $employees = Employees::all();
 
         if ($employees->isEmpty()) {
             $this->command->info('⚠️ Tidak ada user dengan role employee.');
@@ -54,7 +55,7 @@ class AttendanceSeeder extends Seeder
 
 
         foreach ($employees as $employee) {
-            $this->command->info("Generate attendance buat {$employee->name}");
+            $this->command->info("Generate attendance buat {$employee->full_name}");
 
             $date = $startDate->copy();
             while ($date->lte($endDate)) {
@@ -101,7 +102,7 @@ class AttendanceSeeder extends Seeder
                         'start_time' => Carbon::parse('16:00'),
                         'end_time' => $checkOut,
                         'total_hours' => $diffInHours,
-                        'status' => 'pending',
+                        'status' => 'approved',
                     ]);
                 }
 
@@ -114,6 +115,7 @@ class AttendanceSeeder extends Seeder
                         'check_in' => $status === 'hadir' ? $checkIn : null,
                         'check_out' => $status === 'hadir' ? $checkOut : null,
                         'status' => $status,
+                        'overtime_hours' => $diffInHours,
                         'note' => $status !== 'hadir' ? ucfirst($status) . ' (auto dummy)' : null,
                         'source' => 'seeder',
                     ]

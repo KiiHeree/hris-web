@@ -7,19 +7,28 @@
         </div>
         <div class="az-content-label mg-b-5">Show Payroll</div>
         <p class="mg-b-5">This menu is used to manage list of Payroll.</p>
-
+        
+        <div class="az-content-label mg-b-5">Period : {{$payroll->period}}</div>
         <div class="mt-2">
             <div class="form-group has-success">
                 <label for="exampleInputEmail1">Employee Name</label>
-                <input class="form-control" type="text" value="{{ $payroll->employee->name }}" disabled>
+                <input class="form-control" type="text" value="{{ $payroll->employee->full_name }}" disabled>
             </div>
             <div class="form-group has-success">
                 <label for="exampleInputEmail1">Salary Basic</label>
                 <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->salary_basic) }}" disabled>
             </div>
             <div class="form-group has-success">
+                <label for="exampleInputEmail1">Total Allowance</label>
+                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->total_allowance) }}" disabled>
+            </div>
+            <div class="form-group has-success">
+                <label for="exampleInputEmail1">Total Deduction</label>
+                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->total_deduction) }}" disabled>
+            </div>
+            <div class="form-group has-success">
                 <label for="exampleInputEmail1">Salary Net</label>
-                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->net) }}" disabled>
+                <input class="form-control" class="form-control" type="text" value="{{ number_format($payroll->net_salary) }}" disabled>
             </div>
             <div class="form-group has-success">
                 <label for="exampleInputEmail1">Status</label>
@@ -32,7 +41,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Type</th>
+                        <th>Name</th>
                         <th>Description</th>
                         <th>Amount</th>
                     </tr>
@@ -41,7 +50,7 @@
                     @foreach ($payroll->items as $item)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $item->type }}</td>
+                            <td>{{ $item->salaryComponent->name }} ({{$item->salaryComponent->type}})</td>
                             <td>{{ $item->description }}</td>
                             <td>{{ number_format($item->amount) }}</td>
                         </tr>

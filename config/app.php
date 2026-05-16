@@ -126,6 +126,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'face_service_secret' => env('FACE_SERVICE_SECRET', 'gabriella'),
+
     /*
     |--------------------------------------------------------------------------
     | Maintenance Mode Driver

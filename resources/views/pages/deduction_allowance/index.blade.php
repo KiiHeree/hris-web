@@ -69,16 +69,12 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                @if ($mode == 'create')
-                    <form wire:submit.prevent="store">
-                    @elseif ($mode == 'update')
-                        <form wire:submit.prevent="update">
-                @endif
+                <form wire:submit.prevent="{{ $mode == 'update' ? 'update' : 'store' }}">
 
                 <div class="modal-body">
                     <div class="form-group has-success">
                         <label for="">Name</label>
-                        <input class="form-control" placeholder="Input Name" wire:model="name" required="name"
+                        <input class="form-control" placeholder="Input Name" wire:model="name" required
                             type="text">
                     </div>
                     <div class="form-group has-success">
@@ -99,11 +95,9 @@
                         </select>
                     </div>
                     <div class="form-group has-success">
-                       <div class="form-group has-success">
-                            <label for="">Default Value</label>
-                            <input class="form-control" placeholder="Input Value" wire:model.live="default_value" required="default_value"
-                                type="number">
-                        </div>
+                        <label for="">Default Value</label>
+                        <input class="form-control" placeholder="Input Value" wire:model.live="default_value" required
+                            type="number">
                     </div>
                 </div>
                 <div class="modal-footer">

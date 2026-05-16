@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('end_date');
             $table->enum('type', ['izin', 'sakit', 'cuti']);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->foreignId('approver_id')->nullable()->constrained('users');
+            $table->foreignId('approver_id')->nullable()->constrained('employees');
             $table->timestamps();
         });
     }

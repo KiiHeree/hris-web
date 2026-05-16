@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('end_time');
             $table->decimal('total_hours', 5, 2);
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->foreignId('approver_id')->nullable()->constrained('users');
+            $table->foreignId('approver_id')->nullable()->constrained('employees');
             $table->timestamps();
         });
     }
