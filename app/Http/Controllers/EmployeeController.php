@@ -41,7 +41,9 @@ class EmployeeController extends Controller
         $manager = Employees::all();
         $status = EmploymentStatus::all();
         $salary_component = SalaryComponent::all();
-        return view('pages.employees.employee-form', compact(['department', 'position', 'data', 'title', 'salary_component', 'status', 'manager']));
+        $detail_salary = [];
+        $detail_document = [];
+        return view('pages.employees.employee-form', compact(['department', 'position', 'data', 'title', 'salary_component', 'status', 'manager','detail_salary','detail_document']));
     }
 
     /**
@@ -177,7 +179,7 @@ class EmployeeController extends Controller
             $data = User::findOrFail($id);
             $password = $data->password;
 
-            if ($request->password != $data->password) {
+            if (Hash::make($request->password) != $data->password) {
                 $password = Hash::make($request->password);
             }
 

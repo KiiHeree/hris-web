@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', DashboardLivewire::class)->name('dashboard');
-    Route::get('/', AttendanceLivewire::class)->name('attendance');
+    Route::get('/attendance', AttendanceLivewire::class)->name('attendance');
 
     Route::prefix('employee')->name('employee.')->group(function () {
         Route::resource('employee', EmployeeController::class);
