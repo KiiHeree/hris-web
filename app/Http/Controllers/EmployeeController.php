@@ -179,7 +179,7 @@ class EmployeeController extends Controller
             $data = User::findOrFail($id);
             $password = $data->password;
 
-            if (Hash::make($request->password) != $data->password) {
+            if ($request->password != '' || $request->password != null) {
                 $password = Hash::make($request->password);
             }
 
@@ -189,7 +189,8 @@ class EmployeeController extends Controller
                 'password' => $password,
             ]);
 
-            $update_employee = Employees::where('user_id', $id)->update([
+            $update_employee = Employees::where('user_id', $id)->first();
+            $update_employee->update([
                 'full_name' => $request->full_name,
                 'nik' => $request->nik,
                 'join_date' => $request->join_date,
@@ -210,8 +211,10 @@ class EmployeeController extends Controller
                 'email' => $request->email,
             ]);
 
+            $employee_id = $update_employee->id;
+
             // Salary
-            $salary_id  = EmployeeSalaryComponent::where('employee_id', $id)->pluck('id')->toArray();
+            $salary_id  = EmployeeSalaryComponent::where('employee_id', $employee_id)->pluck('id')->toArray();
             $salary_submit_id = [];
             foreach ($request->input('salary_components', []) as $component) {
                 if (!empty($component['id'])) {
@@ -224,7 +227,7 @@ class EmployeeController extends Controller
                 } else {
                     // data baru → insert
                     EmployeeSalaryComponent::create([
-                        'employee_id'         => $id,
+                        'employee_id'         => $employee_id,
                         'salary_component_id' => $component['type'],
                         'value'              => $component['amount'],
                     ]);
@@ -238,7 +241,7 @@ class EmployeeController extends Controller
             }
 
             // Documents
-            $document_id  = EmployeeDocument::where('employee_id', $id)->pluck('id')->toArray();
+            $document_id  = EmployeeDocument::where('employee_id', $employee_id)->pluck('id')->toArray();
             $document_submit_id = [];
 
             foreach ($request->input('documents', []) as $i => $doc) {
@@ -262,7 +265,7 @@ class EmployeeController extends Controller
                     // data baru → wajib ada file
                     $path = $file->store('employee-documents', 'public');
                     EmployeeDocument::create([
-                        'employee_id' => $id,
+                        'employee_id' => $employee_id,
                         'type'        => $doc['type'],
                         'file_path'   => $path,
                     ]);
